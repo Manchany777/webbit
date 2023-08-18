@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/event.css" type="text/css">
+</head>
+<body>
+<h1>회원가입</h1>
+<form name="form1">
+	<div id="input">
+		<h2>저장되었습니다.</h2>
+		<input type="button" id="backBtn" value="이전페이지로 이동" class="myButton" />
+	</div>
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('.myButton').click(function(){  // 대신 'input[type="button"]'  이걸로 해도 된다.
+		history.back(); 			    // 단순한 이동 (뒤로 이동시 이전 페이지에 입력한 값이 그대로 유지)
+		location.href = "exam10.html";  // 이전 페이지 이동시 새로고침 효과가 있다. (뒤로가기 할 시 이전 페이지의 입력값이 초기화)
+	});
+});
+</script>
+</body>
+</html>

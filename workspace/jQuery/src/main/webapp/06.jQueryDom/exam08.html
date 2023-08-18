@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+<h1 class="title">동적 드롭다운</h1>
+<div class="exec">
+	<form>
+		<!-- 각 단계별 dropdown을 표시할 span태그-->
+		<span id="category1"></span>
+		<span id="category2"></span>
+		<span id="category3"></span>
+	</form>
+</div>
+
+<div class="console"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	// 1 depth(만 읽어오기 (category-data.html 中))
+	//   카테고리1에         해당 파일을 로드하고           그중에서 이것만      아래와 같이 실행(function())
+	$('#category1').load('../txt/category-data.html #category1-1', function(){
+		$(this).show();
+	});
+	
+	// 2 depth => 여기부터 동적으로 들어가야 함
+	$(document).on('change', '#category1 > select', function(){
+		$('#category2').empty().hide();
+		$('#category3').empty().hide();
+		// 1depth 다시 선택시 기존값 초기화(1 depth를 선택할 때는 2 depth와 3 depth를 없애주겠다.)
+		
+		var target = $(this).find('option:selected').attr('data-target');
+					// this = select
+		console.log('target = ' + target)  // target을 제대로 꺼내오는지 확인
+		
+		$('#category2').load('../txt/category-data.html ' + target, function(){ 
+												// 주의) html 뒤에 한 칸 안띄우면 html과 target이 붙어버려서 파일을 다 읽어버린다.
+			$(this).show();
+		});
+	});
+	
+	// 3 depth
+	$(document).on('change', '#category2 > select', function(){
+		$('#category3').empty().hide();
+		// 2depth 다시 선택시 기존값 초기화(2 depth를 선택할 때는 3 depth를 없애주겠다.)
+			
+		var target = $(this).find('option:selected').attr('data-target');
+		console.log('target = ' + target)  // target을 제대로 꺼내오는지 확인
+		
+		$('#category3').load('../txt/category-data.html ' + target, function(){
+			$(this).show();
+		});
+	});
+	
+	// 마지막 선택 (선택한 내용을 하단에 뿌려주기)
+		      //내용이 바뀔때마다, 카테고리3번까지 선택이 되면, 해당 내용을 뿌려주겠다.  
+		      // 			(셀렉터에선 document의 자손 태그를 정의해 줘야함. so, 해당 네임이 어떤 태그인지 표시해줘야한다)
+	$(document).on('change', '#category3 > select', function(){
+		if($(this).find('option:selected').index() > 0 ) {  // 카테고리 3번이 선택 안되어있으면 선택이 되도록 설정(0번이 선택하세요 메뉴임)
+			var data1 = $('#category1 > select > option:selected').val();
+			var data2 = $('#category2').find('option:selected').val();
+			var data3 = $(this).find('option:selected').val();  // data 변수에 담는 여러가지 방식
+			
+			$('.console').html('<h3>' + data1 + ' &gt; ' + data2 + ' &gt; ' + data3 + '</h3>');
+		} // if
+	});
+});
+</script>
+</body>
+</html>
+
+<!-- 
+* load()
+읽어오고자 하는 대상의 내용이 단순한 text나 html 태그를 표현하며 
+읽어온 내용을 특정 요소에 출력하는 것만을 목적으로 할 경우 load() 함수를 사용해 코드를 축약할 수 있다.
+
+$("CSS셀렉터").load(
+	"읽어올 대상의 URL" 
+	[, function() { ...읽기에 성공한 후 실행될 함수...}]	
+);
+
+예) "readme.html" 파일의 전체 내용 중에서 "#my"라는 id값을 갖는 요소만을 읽어올 경우
+$("출력할 대상의 셀렉터").load("readme.html #my");
+ -->

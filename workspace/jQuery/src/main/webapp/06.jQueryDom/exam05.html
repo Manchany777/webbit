@@ -1,0 +1,44 @@
+<exam05.html 파일>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="button" value="추가" />
+<input type="button" value="삭제" />
+
+<!-- 동적 요소 -->
+<ul>
+
+</ul>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	var i=1;
+	
+	$('input:eq(0)').click(function(){	// 추가 버튼
+		var li1 = $('<li>').css('color', 'red').html('추가항목' + (i++));
+		var li2 = $('<li>').css('color', 'green').html('추가항목' + (i++));
+		var li3 = $('<li>').css('color', 'blue').html('추가항목' + (i++));
+		
+		$('ul').append(li1);  // ul안에 위에서 만든 li태그를 집어넣어줌
+		$('ul').append(li2);
+		$(li3).appendTo($('ul'));  // = $('ul').append(li3);
+	});
+	
+	$('input:eq(1)').click(function(){ // 삭제 버튼
+		$('ul').empty();
+	});
+});
+</script>
+</body>
+</html>
+
+<!--(방향 주의, 결과는 동일)
+A.append(B)   -- A에 B를 추가하다.
+B.appendTo(A) -- B를 A에 추가하다.
+ -->

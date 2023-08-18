@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/event.css" type="text/css">
+</head>
+<body>
+<h1>속성 제어</h1>
+<p>클릭하세요.</p>
+<img src="../image/1.jpg" width="500" height="300" alt="카카오 단체사진"/>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	var index = 1;
+	
+	$('img').click(function(){
+		index = (index%4) + 1; // 2 3 4 1 2 3 4 1 2 3 4... 인덱스가 반복되도록 만들기
+		$(this).attr('src', '../image/' + index + '.jpg'); // this - img태그(자기자신)를 의미
+	});
+});
+</script>
+</body>
+</html>

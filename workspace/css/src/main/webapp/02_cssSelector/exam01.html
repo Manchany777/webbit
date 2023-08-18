@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+h3, li {
+	color: brown;
+}
+div > div > strong { /* 자식 셀렉터 */
+	background: yellow;
+}
+
+ul strong { /* 후손 셀렉터 */ /* 후손 셀렉터는 바로 건너뛸 수 있다.*/
+	color: dodgerblue;
+}
+/*
+부모 > 자식
+부모 후손
+*/
+
+/* class스타일 */
+.warning {
+	color: red;
+}
+body.main {   /* 스타일 속성이 많아질 때 혼동방지를 위해 해당속성의 태그명을 같이 적기도 한다. */
+	background: aliceblue;
+}
+/* id스타일 */
+#list {
+	background: mistyrose;
+}
+#list span {
+	color:forestgreen;
+}
+
+/* 가상 클래스 - 첫 번째 문자를 선택(first-letter) */
+h3:first-letter {
+	color: red;
+	font-size: 25px;
+}
+/* 가상 클래스 - 이벤트 동작 설정(마우스 오버롤시) */
+li:hover {
+	background: yellowgreen;
+}
+/* 셀렉션 - 마우스로 드래그하면 글자색은 빨강, 바탕색은 노랑으로 변한다. */
+::selection {
+	color: red;
+	background: yellow;
+}
+/* :(콜론 하나)와 ::(콜론 두개)는 기능상 거의 차이가 없다. 일반적으로 콜론 하나를 많이 사용하는 편 */
+</style>
+</head>
+<body class="main">
+<h3>Web Programming</h3>
+<hr>
+<div>
+	<div>2학기 <strong>학습 내용</strong>입니다.</div>
+	<ul id="list">
+		<li><span>HTML5</span></li>
+		<li><strong>CSS</strong></li>
+		<li>JAVASCRIPT</li>
+	</ul>
+	<div class="warning">60점 이하는 F</div>
+</div>
+</body>
+</html>

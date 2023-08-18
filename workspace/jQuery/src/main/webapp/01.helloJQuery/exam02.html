@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 id="hello"></h1>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+function hello($){  // $라는 객체를 통해서 jQuery함수를 쓴 것
+	var h1 = $('#hello')
+	h1.html('Hello jQuery')
+	h1.hext('Hello jQuery')
+}
+
+jQuery(hello);
+</script>
+</body>
+</html>
+
+<!-- 
+$()    <-> JSTL의 EL(${})과 혼동주의
+- 그냥 이름이 $인 함수 그 자체이다. $ 함수를 호출하는 것이다.
+- jQuery 라이브러리 내부를 보면 window.jQuery = window.$ = jQuery 로 동일한 코드이다.
+
+ -->

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	width: 200px;
+	height: 200px;
+	color: blueviolet;
+	font-size: 16px;
+	background-color: skyblue;
+	background-size: 200px 100px; /* 시계 방향 left & right - top & bottom */
+								  /* background-image는 방향이 반대이다(앞이 좌우, 뒤가 위아래) 주의!!! */
+	background-image: url("../image/spongebob.png");
+	background-repeat: repeat-y; /* x - 좌우, y - 위아래 */
+	background-position: top right; /* top right; -> 확인하려면 no-repeat설정을 해야함 */
+}
+</style>
+</head>
+<body>
+<h3>div 박스에 배경 꾸미기</h3>
+<hr>
+<div>스폰지밥은 다른 캐릭터들을 짜증나게 하는 지나치게 낙관적인 스폰지이다.</div>
+</body>
+</html>

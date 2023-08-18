@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/event.css" type="text/css">
+</head>
+<body>
+<h1>focus/blur 이벤트 확인하기</h1>
+<div id="input">
+	<input type="text" />
+</div>
+<h2>결과</h2>
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	// 페이지가 열리면 자동으로 포커스 설정 (페이지가 열리자마자 text칸에 focus가 잡히도록)
+	$('#input > input[type="text"]').focus();
+	
+	$('#input > input[type="text"]').focus(function(){   // focus가 들어왔을 때
+		$('#result').html('포커스가 들어갔습니다.'); 
+	}); 
+	
+	$('#input > input[type="text"]').blur(function(){   // focus가 나갔을 때
+		$('#result').html('포커스가 나왔습니다.'); 
+	}); 
+});
+
+
+</script>
+</body>
+</html>

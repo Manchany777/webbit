@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table {
+	text-align: center;
+	border: 1px solid;
+	border-collapse: collapse;
+}
+tr, th, td {
+	border: 1px solid;
+	width: 100px;
+	height: 30px;
+}
+#a {
+	background-color: #A52A2A;
+}
+#b {
+	background-color: #00BFFF;
+}
+#c {
+	background-color: #8A2BE2;
+}
+#d {
+	background-color: #FFD700;
+}
+#e {
+	background-color: #FF8C00;
+}
+#f {
+	background-color: #6B8E23;
+}
+</style>
+</head>
+<body>
+<h2>색 이름과 코드</h2>
+<hr>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>이름</th>
+			<th>코드</th>
+			<th>색</th>
+			<th>이름</th>
+			<th>코드</th>
+			<th>색</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Brown</td>
+			<td>#A52A2A</td>
+			<td id="a"></td>
+			<td>DeepSkyBlue</td>
+			<td>#00BFFF</td>
+			<td id="b"></td>
+		</tr>
+		<tr>
+			<td>Blueviolet</td>
+			<td>#8A2BE2</td>
+			<td id="c"></td>
+			<td>Gold</td>
+			<td>#FFD700</td>
+			<td id="d"></td>
+		</tr>
+		<tr>
+			<td>DarkOrange</td>
+			<td>#FF8C00</td>
+			<td style="background: #FF8C00;"></td>
+			<td>OliveDrab</td>
+			<td>#6B8E23</td>
+			<td> <!-- div영역으로 빈칸을 채우는 방법 --> 
+				 <!-- div글자안에 아무것도 없으면 div영역이 아무것도 안잡히기때문에 width로 영역을 잡아줘야함 -->
+				<div style="background: #6B8E23; width: 100px; height: 30px;">&nbsp;</div> 
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

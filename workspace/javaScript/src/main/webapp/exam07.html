@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+// switch (실수형 못옴)
+let score = prompt("당신의 점수는 ?");
+
+// Math.floor() // 소수점 이하를 자르는 javascript 함수
+// by me
+/* 
+switch(Math.floor(score / 10)) {
+	case 10 : 
+	case 9 : document.write("A학점");
+		break; 
+	case 8 : document.write("B학점");
+		break; 
+	case 7 : document.write("C학점");
+		break; 
+	case 6 : document.write("D학점");
+		break; 
+	default : document.write("F학점");
+		break; 
+} // switch
+*/
+
+// by쌤 (자바스크립트는 자바처럼 변수를 미리 선언안해도 됨. 그때그때 선언해도 인식됨)
+switch(Math.floor(score / 10)) {
+	case 10 :   // 100점이면 case9로 흘러가서 A학점 출력할 수 있도록 함
+	case 9 : grade = "A학점"; break; 
+	case 8 : grade = "B학점"; break; 
+	case 7 : grade = "C학점"; break; 
+	case 6 : grade = "D학점"; break; 
+	default : grade = "F학점";
+} // switch
+
+document.write("당신의 점수는 " + score + "점 이므로 " + grade + " 입니다.")
+//-----------------
+
+
+let num = 85.9876543;
+console.log(num.toFixed(0));  // 86
+console.log(num.toFixed(3));  // 85.988
+
+var a = "1.7";
+console.log(a + 3);	// 결합 1.73
+console.log(parseInt(a) + 3); // 정수변환(반올림x), 4
+console.log(Math.floor(a) + 3); // 소수점 절삭, 4
+console.log(Number(a) + 3); // 1.7 + 3 = > 4.7
+console.log(~~(a) + 3); // Math.floor()와 비슷 (새로 나온 문법), 4
+
+</script>
+</body>
+</html>
+
+<!-- 
+Math.ceil() : 소수점 올림, 정수 반환
+Math.floor() : 소수점 버림, 정수 반환
+Math.round() : 소수점 반올림, 정수 반환
+toFixed() : 숫자에서 원하는 소수점 길이만큼만 반올림하여서 반환
+
+parseInt() : 문자 -> 정수  	"123" -> 123     <->  자바에선 Integer.parseInt("123")
+parseFloat() : 문자 -> 실수  	"45.3" -> 45.3   <->  자바에선 Double.parseDouble("45.3"), Float.parseFloat("45.3f") 둘 다 있음
+													45.3f : 실수는 Double이 베이스이기에 Float를 쓰고 싶으면 먼저 숫자를 Float타입으로 바꿔야 한다.
+Number() : 문자 -> 정수&실수
+ -->

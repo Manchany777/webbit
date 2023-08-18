@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="demo2">
+	<button>add</button>
+	<ul>
+		<li>test1</li>
+		<li>test2</li>
+		<li>test3</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('#demo2 button').on('click', function(){ // 동적처리를 위한 add버튼 추가작업은 따로 수행
+											   // (bind는 이렇게 따로 하는게 불가능해 chain 메소드 작업을 해야만 해서 코드의 길이가 매우 복잡해지고 어려워진다.)
+		//alert($(this).text());
+		$('#demo2 ul').append('<li>added</li>')
+	});
+	
+	// 비동적 처리 
+	// 비동적 문제점) 처음부터 태그가 있지 않은 대댓글(added 텍스트) 등에는 이 이벤트가 걸리지 않는다. 이걸 해결하기 위해 동적 처리를 해야 한다.
+	//$('#demo2 button').on('click', function(){  // add버튼을 누르면 추가
+	//	$('#demo2 ul').append('<li>added</li>');
+	//});
+	
+	//동적 처리
+	//   조상                후손
+	$('#demo2').on('click', 'li', function(){  // 누가 부모인지 정확하게 모르겠으면 최상위 객체인 $(document)로 들이대면 된다.
+		alert($(this).text());
+	});
+});
+</script>
+</body>
+</html>
+
+<!--
+bind는 deprecate 되고 on를 사용하라고 권장
+
+$(선택자).on( events [,selector] [,data], handler( eventObject ) )
+$(선택자).on(이벤트타입 [,자손선택자]   [,데이터], 핸들러())
+events : 공백으로 구분된 하나 이상의 이벤트 타입과 옵션인 네임스페이스.
+selector : 이벤트가 발생할 요소들의 자손을 찾는 선택자. 
+           선택자가 null 이거나 생략됐다면 이벤트는 선택된 요소에 한해서 반응한다.
+data : 이벤트가 발생할 때 핸들러에 전달할 데이터
+handler(eventObject) : 이벤트가 발생되면 실행될 기능. 
+                       false를 반환하는 함수라면 간단하게 false를 직접 인자로 하면 된다.
+-->

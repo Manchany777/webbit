@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	p { /* 여기서 p태그에 일괄 blue 적용해봤자 바뀌는 게 없다 why? 
+	       css는 태그에 바로 속성 적용하는 게 가장 우선순위가 높기 때문이다. */
+		border: 1px solid blue;
+	}
+</style>
+</head>
+<body>
+	<!-- 이미지 태그 사용법 -->
+	<p style="border: 1px solid red;">
+		<!-- 절대번지 지정 --><img src="http://localhost:8080/html5/image/puppy.jpg" alt="망상토끼"/>
+						  <img src="/html5/image/puppy.jpg" alt="망상토끼"/>  <!-- 이렇게 해도 무방 -->
+		<!-- 상대번지 지정 --><img src="../image/puppy.jpg" alt="망상토끼"/>  <!-- 이렇게 해도 무방 -->
+	</p>
+	
+	<!-- 이미지 크기 지정 -->
+	<p>
+		<img src="http://localhost:8080/html5/image/puppy.jpg" alt="망상토끼" width="400px" height="300px"/>
+	</p>
+	
+	<p> <a href="https://www.naver.com">
+			<img src="http://localhost:8080/html5/image/puppy.jpg" alt="망상토끼" width="400px" height="300px"/>
+		</a>
+	</p>
+	
+</body>
+</html>

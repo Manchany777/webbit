@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="result.html">
+	<fieldset>
+		<legend>이름입력하기</legend>
+		<div>
+			<label for="user_name">이름 : </label>
+			<input type="text" name="user_name" id="user_name" />
+		</div>
+		<br/>
+		<div>
+			<input type="submit" value="입력완료" /> <!-- form태그 안에 있는 모든 내용을 전송 (페이지 이동 가능, 데이터 이동 가능) -->
+			<input type="reset" value="초기화" />   <!-- form태그 안에 있는 모든 내용을 초기화-->
+			<!-- input type="button" onclick="" value="입력완료" /--> <!-- onclick은 submit과 달리 페이지 이동 및 데이터 이동이 불가능-->
+			<input type="button" onclick="javascript:location.href='result.html'" value="입력완료" /> 
+										 <!-- onclick으로 페이지 이동이 가능하게 하려면 자바스크립트를 이용해야 함-->
+			<!--input type="image" src="../image/ok.png" width="30px" height="30px" alt="ok" /--> <!-- 이미지 태그로 form전송시 자동submit이 되서 user_name을 들고감 -->
+			<input type="image" src="../image/ok.png" width="30px" height="30px" alt="ok" onclick="return false;"/>	<!-- 자동 submit 취소 -->
+		</div>
+	</fieldset>
+</form>
+</body>
+</html>
+
+<!-- 
+submit ~ action
+-> <form>태그 안에 있는 입력상자의 데이터를 들고 페이지 이동
+
+button ~ onclick
+
+onclick onchange onload 등 클릭시 이벤트 속성이 일어나는 태그는 많지만
+이 중에 데이터를 같이 이동이 가능한 것은 onclick뿐이다.??????????
+-->
+
+

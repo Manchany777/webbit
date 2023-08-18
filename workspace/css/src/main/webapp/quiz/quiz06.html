@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table tr td {
+	margin:10px;
+}
+#img {
+	background-image: url("../image/cardfront.png");
+	position: relative;
+	width: 200px;
+	height: 300px;
+}
+#img:hover {
+	background-image: none;
+}
+#img img.back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+#img:hover img.back {
+	opacity: 1;
+} 
+
+</style>
+</head>
+<body>
+<h3>:hover 활용</h3>
+<hr>
+<table>
+	<tr>
+		<td>마우스를 올리면 카드의 앞면이 보인다.</td>
+		<td>
+			<div id="img">
+				<img class="front" src="../image/cardfront.png" alt="트럼프카드 앞면" width="200" height="300">
+				<img class="back" src="../image/cardback.jpg" alt="트럼프카드 뒷면" width="200" height="300">
+			</div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+// 배열 생성
+//var myArray1 = new Array("홍길동", "자바스크립트", "학생") // 내장 객체
+var myArray1 = ["홍길동", "자바스크립트", "학생"]; // 자바처럼 이렇게 해도 된다.
+
+document.write(myArray1[0] + "<br>");
+document.write(myArray1[1] + "<br>");
+document.write(myArray1[2] + "<br>");
+document.write("<hr>");
+
+myArray1[0] = "HongGilDong"
+myArray1[1] = "JavaScript"
+myArray1[2] = "Student"
+document.write(myArray1[0] + "<br>");
+document.write(myArray1[1] + "<br>");
+document.write(myArray1[2] + "<br>");
+document.write("<hr>");
+
+// 빈 배열 생성
+var myArray2 = new Array(); // 둘 중에 어떤걸 해도 상관x
+var myArray2 = []; // 단, 자바는 이렇게 하면 안되고 개수를 정확히 적어야 한다.
+
+for(var i=0; i<10; i++) {
+	myArray2[i] = i+1;
+}
+
+document.write("배열 길이 : " + myArray2.length + "<br>"); // .length : 자바와 동일
+for(var i=0;  i<myArray2.length; i++) {
+	document.write(myArray2[i] + " ");
+}
+</script>
+</body>
+</html>

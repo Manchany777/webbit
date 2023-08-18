@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function insertQuestion(num) {
+	alert(num);
+	
+	var str = prompt("사칙연산의 수식을 입력하세요. (예: 100+50)", "");
+	var answer = eval(str); // 입력받은 문자열을 수식으로 변환
+	var result = "<font color='red'>" + str + " = " + answer + "</font>";
+	
+	document.getElementById("question").innerHTML = result;
+}
+</script>
+</head>
+<body onload="insertQuestion(222)"> <!-- 두 번째 호출 -->
+<!-- onload는 body태그를 다 읽어야 호출됨. so, h1태그까지 다 읽은 상태에서 호출하는 것이기때문에 에러없이 함수의 모든 내용이 실행됨 -->
+
+<script> // 최초 호출
+	insertQuestion(111); 
+	// 얘를 호출한 시점에서는 h1의 id인 question을 읽기 전에 insertQuestion함수를 호출하기때문에 
+	// document.getElementById("question").innerHTML = result;을 읽을 수 없다. so, error가 떨어짐
+</script>
+
+<h1 id="question"></h1>
+</body>
+</html>

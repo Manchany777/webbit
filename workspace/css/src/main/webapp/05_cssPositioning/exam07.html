@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div { position: absolute; }
+img { position: absolute; }
+
+ /* 순서대로 겹쳐져서 표현되는 것을 z-index를 사용해서 내가 임의로 순서를 고칠 수 있게 함*/
+#spadeA { left: 10px; top: 20px; z-index: -3;}
+#spade2 { left: 40px; top: 30px; z-index: -2 }
+#spade3 { left: 80px; top: 40px; z-index: 3 }
+#spade7 { left: 120px; top: 50px; z-index: 7 }
+</style>
+</head>
+<body>
+<h3>z-idnex 프로퍼티</h3>
+<hr>
+<div>
+	<img id="spadeA" src="../image/spade-A.png" width="100" height="140" alt="스페이드A">
+	<img id="spade2" src="../image/spade-2.png" width="100" height="140" alt="스페이드2">
+	<img id="spade7" src="../image/spade-7.png" width="100" height="140" alt="스페이드7">
+	<img id="spade3" src="../image/spade-3.png" width="100" height="140" alt="스페이드3">
+</div>
+</body>
+</html>

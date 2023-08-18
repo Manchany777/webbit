@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+var a = Number(a);
+document.write("a = " + a + "<br>"); // NaN (Not a Number)
+
+var sum = a + 1;  // NaN + 1 = NaN (숫자도 아니고 문자도 아닌 NaN에 숫자를 더해봤자 NaN이다.)
+document.write("sum = " + sum + "<br>"); // NaN
+
+//----------------------------------------------
+
+var str = a + "str"; // NaN + 문자열 = NaNstr (결합)
+document.write("str = " + str + "<br>");  // NaNstr
+document.write("<br>");
+
+//----------------------------------------------
+
+var v1 = "가나다라";
+var v2 = "123456";  // NaN는 문자열이라도 숫자형식으로 잡혀있으면 숫자로 봄. 즉, isNaN(v2)는 false가 됨
+
+var is_num1 = ! isNaN(v1); // false : v1의 값이 숫자가 아니다(isNaN(v1)) -> v1의 값이 숫자가 아닌게 아니다.(! isNaN(v1))
+var is_num2 = ! isNaN(v2); // true : v2의 값이 숫자가 맞다
+
+//----------------------------------------------
+
+if(is_num1)
+	document.write(v1 + "은(는) 숫자 입니다.<br>")
+else
+	document.write(v1 + "은(는) 숫자가 아닙니다.<br>")
+	
+if(is_num2)
+	document.write(v2 + "은(는) 숫자 입니다.<br>")
+else
+	document.write(v2 + "은(는) 숫자가 아닙니다.<br>")
+document.write("<br>");
+
+function sumInt(x, y) {
+	var isStrX = ! isNaN(x); // isNaN(1) - false(숫자의 형식이 아닙니까)  // !isNaN(1) - true (숫자의 형식이 아닌게 아닙니까 = 숫자의 형식입니까)
+							 // isNaN(a) - true(숫자의 형식이 아닙니까)   // !isNaN(a) - false (숫자의 형식이 아닌게 아닙니까 = 숫자의 형식입니까)
+							 // 숫자가 맞으면 true
+	var isStrY = ! isNaN(y);
+	
+	if(! isStrX || ! isStrY) {
+		return "숫자 형태이거나 숫자값이 전달되어야 합니다.";
+	}
+	
+	var result = parseInt(x) + parseInt(y);
+	return result;
+}
+
+document.write(sumInt("a", 1) + "<br>") // F, T
+document.write(sumInt("1", "2") + "<br>") // T, T
+document.write(sumInt(100, "5.6") + "<br>") // T, T
+document.write(sumInt(-1, "-100") + "<br>") // T, T
+</script>
+</body>
+</html>

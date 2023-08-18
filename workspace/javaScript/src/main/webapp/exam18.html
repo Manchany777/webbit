@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function doPrint(num) {
+	var msg =  "doPrint()가 " + num + "회 실행되었습니다.";
+	alert(msg);
+	document.getElementById("myid").innerHTML = msg;
+}
+
+doPrint(1); // 최초 호출 (document.getElementById("myid").innerHTML = msg;은 아직 읽지못해 수행x - error)
+</script>
+</head>
+<body>
+
+<script>
+	doPrint(2); // 두번째 호출 (document.getElementById("myid").innerHTML = msg;은 아직 읽지못해 수행x - error)
+</script>
+
+<h1 id="myid">안녕하세요.</h1><br>
+반갑습니다.
+
+<script>
+	doPrint(3); // 세번째 호출 (document.getElementById("myid").innerHTML = msg; 읽고 나서 수행 - 정상 동작)
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.header { /* 얘네들을 쥐고 있는 body태그에 길이가 정의되어 있지 않기때문에 height을 설정해도 의미가 없다. 
+				<body style="height: 300px"> 처럼 height값을 주어야 적용이 됨*/
+		width: 100%; height: 15%;
+		background: yellow;
+	}
+	.nav {
+		width: 15%; height: 70%;
+		float: left;
+		background: orange;
+	}
+	.section {
+		width: 70%; height: 70%;
+		float: left;
+		background: olivedrab;
+	}
+	.aside {
+		width: 15%; height: 70%;
+		float: left;
+		background: orange;
+	}
+	.footer {
+		width: 100%; height: 15%;
+		clear: both; /* display: flex; 이것도 된다.(clear both보다 이걸 더 많이 씀) */
+		background: plum;
+	}
+</style>
+</head>
+<body>
+	<header class="header">header</header>
+	<nav class="nav">nav</nav>
+	<section class="section">section</section>
+	<aside class="aside">aside</aside>
+	<footer class="footer">footer</footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#menubar {
+	background: olive;
+}
+#menubar ul { /* 왼쪽 여백으로 바짝 들러붙게 */
+	margin: 0;
+	padding: 0;
+	width: 570px;
+}
+#menubar ul li { /* 메뉴 목록을 한 줄로 나란히 오도록 (블록 속성을 인라인 속성으로) */
+	display: inline-block;
+	list-style: none; /* 리스트 앞에 붙은 점 제거 */
+	padding: 10px 15px;
+}
+#menubar ul li a {
+	color: white;
+	text-decoration: none; /* 링크 밑줄 없애기 */
+}
+#menubar ul li a:hover {
+	color: yellow;
+
+}
+#menubar ul li:hover {
+	background-color: violet;
+}
+</style>
+</head>
+<body>
+<div id="menubar">
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Espresso</a></li>
+		<li><a href="#">Cappucino</a></li>
+		<li><a href="#">Cafe Latte</a></li>
+		<li><a href="#">F.A.Q</a></li>
+	</ul>
+</div>
+</body>
+</html>

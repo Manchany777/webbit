@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 id="hello"></h1>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+jQuery(function($){   // exam02.html 방식을 이렇게 뭉쳐서 써도 된다. 
+					  // - 자바스크립트에 더 가깝게 window.onload격인 jQuery안에 function을 뭉쳐서 쓴 것
+	var h1 = $('#hello')
+	h1.html('Hello jQuery')
+	h1.hext('Hello jQuery')
+});
+</script>
+</body>
+</html>

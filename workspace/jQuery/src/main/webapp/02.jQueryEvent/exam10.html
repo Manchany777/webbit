@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/event.css" type="text/css">
+</head>
+<body>
+<h1>회원가입</h1>
+<form name="form1" action="form_ok.html">
+	<div id="input">
+		<h3>당신의 이름은 무엇입니까?</h3>
+		<input type="text" name="use_name" />
+		<input type="submit" value="저장하기" class="myButton" />
+		<input type="reset" value="다시작성" class="myButton" />
+	</div>
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('form[name="form1"]').submit(function(){  // form1이라는 이름을 가지고 있는 form태그의 submit을 만나면 action으로 이동해라
+		if( !confirm('정말로 저장하시겠습니까?') ){    // 취소가 true값이 되어 {} 구문을 실행
+			return false;					 	// 실행을 취소시켜 입력창을 유지
+		}
+	});
+	
+	$('input[type="reset"]').click(function(){ 
+		if( !confirm('정말 입력을 취소하시겠습니까?') ){
+			return false;
+		}
+	});
+	
+	// 참고 : 회원정보 수정시에는 onload를 사용해야함
+});
+</script>
+</body>
+</html>

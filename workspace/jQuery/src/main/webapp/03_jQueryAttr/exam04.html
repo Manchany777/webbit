@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/event.css" type="text/css">
+</head>
+<body>
+<h1>활성/비활성 구현하기</h1>
+<form name="form1">
+	<input type="checkbox" id="upload_file_check" value="Y" />
+	<input type="file" id="file_finder" disabled /> 
+	<!-- 주의) disabled은 완전 비활성화 이므로 readonly(주소 나머지 입력해야 할 때 등)로 써야할 곳에 disabled를 쓰면 안 된다. --> 
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('#upload_file_check').change(function(){
+		var is_check = $(this).is(':checked'); // 현재 나 자신의 상태값이 true인지, false인지 알아내는 법
+		$('#file_finder').prop('disabled', !is_check); // false일 때 disabled(= true), true일 떄 disabled(= false)를 해제하도록 만듦
+		// 즉, 체크박스에 체크가 안되어 있을때(기본값)는 파일 업로드를 못하고, 체크박스에 체크를 해야만 파일 업로드가 가능하도록 해야 한다.
+	});
+});
+</script>
+</body>
+</html>

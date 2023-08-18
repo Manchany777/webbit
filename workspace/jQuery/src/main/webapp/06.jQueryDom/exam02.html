@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	width: 400px;
+	height: 300px;
+	padding-top: 20px;
+	background-size: 100% 100%;
+}
+ul {
+	padding: 10px 20px;
+	background-color: rgba(255, 255, 255, 0.6) /* 0.6 - 투명도 */
+}
+</style>
+</head>
+<body>
+<div>
+	<ul id="menu">
+		<li class="item">
+			<a href="#">../image/1.jpg</a>
+		</li>
+		
+		<li class="item">
+			<a href="#">../image/2.jpg</a>
+		</li>
+		
+		<li class="item">
+			<a href="#">../image/3.jpg</a>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('.item > a').click(function(){
+		var index = $(this).parent().index();  // index는 li입장에서 봐줘야 함. 따라서 부모태그까지 올라가서 index를 찾아야함
+		console.log('index = ' + index);
+		
+		var image = ['../image/1.jpg', '../image/2.jpg', '../image/3.jpg']; // image = [0, 1, 2];
+		$(this).parents('div').css({           // parents로 부모 이상으로 올라가서 div를 찾을 수 있다.
+			'background-image' : 'url(' + image[index] + ')'
+		});
+	});
+});
+</script>
+</body>
+</html>

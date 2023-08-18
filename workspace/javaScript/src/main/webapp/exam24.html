@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="autoNo()">
+
+<p>
+	고객님의 인증번호는 <strong id="auth">00000</strong>입니다.
+</p>
+
+<input type="button"" value="인증번호 새로 받기" onclick="refresh()"/>
+<input type="button"" value="네이버로 이동하기" onclick="goNaver()" />
+
+<script>
+function random(x, y) {
+	return Math.floor(Math.random() * (y-x+1) +x); // 난수 발생
+	// Math.random() -> 0<= 사이의 난수값 <1
+}
+
+function autoNo() {
+	var value = ""; // 문자열로 잡아서 난수의 값이 누적합이 되지 않고 단순 결합되게 만듦
+	for(i=1; i<=5; i++) {
+		value += random(0, 9);
+	} //for
+	
+	document.getElementById("auth").innerText = value;
+}
+
+function refresh(){
+	location.reload(); // 새로고침(F5)처럼 현재의 리소스를 다시 불러온다. 
+					    // location.reload(); : 업데이트 할 때 자주쓰는 메소드)
+}
+
+function goNaver(){
+	if(confirm("정말로 네이버로 이동하시겠습니까?"))
+		location.href = "https://www.naver.com"; 
+						// location.href : 페이지 이동할 때 쓰는 메소드
+}
+</script>
+</body>
+</html>

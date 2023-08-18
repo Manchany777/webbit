@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="서버 주소">
+	<fieldset>
+		<legend>내용 입력하기</legend>
+		<div>
+			<!-- 설정한 범위 내에서 아무데나 눌러도 인풋상자가 활성화되게 하는 법 : for와 id를 연결(반드시 둘의 이름을 같게해야 연결이 됨)
+			      인풋상자 크기가 작을 때 매우 유용 for 유저 편의-->
+			<label for="id">아이디</label> 
+			<input type="text" name="user_id" id="id" maxlength="5" placeholder="아이디 입력" />
+		</div>
+		
+		<!--  name과 id의 쓰임새는 다르기에 이름을 같게 써도 상관없다. 단, 위에서 보다시피 for와 id는 짝꿍이니까 반드시 같게 할 것-->
+		<div>
+			<label for="uesr_pw">비밀번호</label>
+			<input type="password" name="user_pw" id="user_pw" maxlength="20" />
+		</div>
+		
+		<div>
+			<label for="memo">자기소개</label>
+			<textarea name="memo" id="memo" maxlength="100"></textarea>
+		</div>
+		
+		<div>
+			<label for="data">숨겨진 항목</label>
+			<input type="hidden" name="data" id="data" value="숨겨진 데이터" />
+		</div>
+	</fieldset>
+</form>
+</body>
+</html>
+
+<!-- 
+FORM이란? 
+  - 정보를 입력 또는 선택하고 버튼을 클릭하며 정보를 서버에 전달하고 응답받는 양방향의 
+    의사소통을 지원하는 입력양식이다.
+  - form 의 내부에는 <input>, <select>, <textarea> 등의 태그들이 포함된다.
+  - name 속성의 값과 유저가 입력한 값이 한 쌍이 되어 서버측에 전달된다.
+ -->

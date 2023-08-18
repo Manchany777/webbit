@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+// const는 재할당은 안되지만 let처럼 구역단위이다.
+const a = 100;
+//a= 250; // error, 재할당이 안 된다.
+console.log(a)  // 100
+{
+	let a = 200
+	console.log(a) // 200
+	{
+		let a = 300
+		console.log(a) // 300
+		{
+			let a = 400
+			console.log(a) // 400
+		}
+		console.log(a) // 300
+	}
+	console.log(a) // 200
+}
+console.log(a) // 100
+</script>
+</body>
+</html>

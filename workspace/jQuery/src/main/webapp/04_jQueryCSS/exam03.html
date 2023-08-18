@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+* { 
+	padding: 0;
+	margin: 0; 
+}
+
+#container { 
+	width: 500px;
+	margin: 20px auto; 
+}
+
+ul.tab {
+	list-style: none;
+	position: relative;
+	z-index: 100;
+}
+
+ul.tab li {
+	width: 100px;
+	height: 40px;
+	float: left;
+}
+
+ul:after {
+	content: '';
+	display: block;
+	float: none;
+	clear: both;
+}
+
+ul.tab li a {
+	background: url("../image/tab.jpg");
+	display: block;
+	color: #222;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+}
+
+ul.tab li a.selected {
+	background: url("../image/tab_selected.jpg");
+}
+
+p.panel {
+	border: 1px solid #9FB7D4;
+	position: relative;
+	padding: 10px;
+	margin: 0;
+	top: -1px;  /* 1픽셀 올렸다는건 그 선을 먹었다는 얘기 즉, 현재 선택된 탭에서의 밑줄을 안보이게 하는 꼼수 */
+}
+</style>
+</head>
+<body>
+<div id="container">
+	<!-- 탭 버튼 영역 -->
+	<ul class="tab">
+		<li><a href="../txt/html5.txt" class="selected">HTML5</a></li>
+		<li><a href="../txt/jquery.txt">jQuery</a></li>
+		<li><a href="../txt/bootstrap.txt" >Bootstrap3</a></li>
+	</ul>
+	<!-- 내용 영역 -->
+	<p class="panel"></p>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	// 실행을 하자마자 class="selected"가 부여된 파일의 내용을 읽어오기 => load() 함수사용
+	//$('ul.tab > li').load('../txt/html5.txt');
+	console.log($('ul.tab a.selected').attr('href')); // ../txt/html5.txt' or ../txt/jquery.txt or ../txt/bootstrap.txt
+	$('p.panel').load($('ul.tab a.selected').attr('href')); // 첫페이지에 바로 보여주는 텍스트 읽어오기
+	
+	$('ul.tab > li > a').click(function(){  // <- 자식으로 들어오는 경우  <=>  'ul.tab a' (후손으로 들어오는 경우)
+		console.log('this = ' + this);		    // this = http://localhost:8080/jQuery/txt/bootstrap.txt
+		console.log('$(this) = ' + $(this));    // $(this) = [object Object]
+		// alert("1111"); 테스트용도
+		// 클릭한 요소를 뺀 나머지에서 현재 쥐고 있는 class속성(class="selected")을 제거
+		$('ul.tab > li > a').not(this).removeClass('selected'); // a태그 객체의 문자(요소)를 제외한 나머지를 제거
+																// 즉, this 그 자체로는 함수를 쓸 수 없다. 단순한 요소(배열값)에 불과하기에
+		// 클릭한 요소에 class="selected" 클래스 속성 추가
+		$(this).addClass('selected');  							// 객체(클래스타입)으로 들어와야 함수를 쓸 수가 있다. $()안에는 객체가 온다고 생각해라
+		$('p.panel').load($(this).attr('href'));
+		
+		return false; // 페이지 이동 방지(클릭시 해당 링크가 걸려있는 텍스트 파일로 이동하지 못하도록 막는 역할)
+	});
+});
+</script>
+</body>
+</html>
+
+<!--
+$('ul.tab > li > a').not(this).removeClass('selected');
+
+Q. 어차피 내가 선택한 링크 외에는 selected된 것이 없을텐데 굳이 removeClass를 사용하는 이유가 무엇인가?
+
+A. 이 부분은 코드의 효율성과 일관성을 위한 것
+먼저 모든 탭 요소에서 'selected' 클래스를 제거하고, 그 다음에 현재 클릭한 탭에 해당 클래스를 추가함으로써 효율적인 방식으로 작동하도록 설계된 것이다.
+이렇게 하면 선택한 탭 하나에 'selected' 클래스를 추가하기 위해 발생할 수 있는 불필요한 작업을 줄이고, 코드의 일관성과 가독성을 유지할 수 있다.
+-->
+
+<!-- 
+.not()
+- 제이쿼리로 선택한 선택자(요소)들 중에서, 특정 선택자(요소)만을 제외하는 함수
+
+this / $(this)
+this의 경우 해당 이벤트가 발생한 요소를 문자열로 표시해주고
+$(this)는 이벤트가 발생하면 발생한 태그를 Object(객채)형태로 감싸서 보여준다는게 다른점이다.
+
+this와 같은 데이터를 갖기 위해서는 $(this)[0] 을 사용하면 된다.
+this  === $(this)[0]
+ -->
