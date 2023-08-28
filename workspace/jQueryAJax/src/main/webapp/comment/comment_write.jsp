@@ -6,6 +6,7 @@
 	boolean result = true;
 	String message = "덧글 등록 완료";
 	
+	//name속성에 걸려있는 것들이 들어온다.
 	String num = request.getParameter("num");
 	String datetime = request.getParameter("datetime");
 	String writer = request.getParameter("writer");
@@ -23,4 +24,4 @@
  		<content><%= content %></content>
  		<datetime><%= datetime %></datetime>
  	</item>
- </commetn>
+ </comment>

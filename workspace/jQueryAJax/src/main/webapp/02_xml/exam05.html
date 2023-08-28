@@ -163,6 +163,13 @@ function addItem(num, writer, content, datetime){ // 호출받음 (태그 생성
 	writer_p.append(name_span).append(date_span).append(del_input);
 	new_li.append(writer_p).append(content_p);
 	$('#comment_list').append(new_li);
+	
+	/*
+	$('.delete_btn').click(function(){
+		$(this).parents('li').hide();
+		}).always(function(){
+			alert('삭제완료');
+		});*/
 }
 </script>
 
@@ -205,6 +212,7 @@ $(function(){ // 위에서 만든 getToday 함수를 호출
 		$('input[name="num"]').val(++num);
 		$('input[name="datetime"]').val(getToday());
 		
+		/*
 		$.post('../comment/comment_write.jsp',  // comment_write에게 보내기 (실전에선 DB단에 보내는 것)
 			{									//
 				'writer': $('#writer').val(), 
@@ -212,6 +220,8 @@ $(function(){ // 위에서 만든 getToday 함수를 호출
 			}, 
 			function(data){
 				var result = eval($(data).find('result').text()); // 문자열 -> boolean 변환
+				//var result = eval($(data).find(result));
+				
 				if(result) {
 					alert($(data).find('message').text());
 				}
@@ -224,15 +234,49 @@ $(function(){ // 위에서 만든 getToday 함수를 호출
 				addItem(num, writer, content, datetime); // 함수 호출
 				
 				// 초기화
-				$('#write').val(''); 
+				$('#writer').val(''); 
+				$('#content').val(''); 
+			}).fail(function(){
+				alert("댓글 작성하는데 실패하였습니다. 잠시후에 다시 시도하세요.");
+			});*/
+		
+		//$.post('', $(this).serialize(), function(){});  // 위의 방식처럼 json으로 죽 늘어뜨리는게 싫으면 serialize를 이용해도 된다.
+		// 주의) serialize는 반드시 name 속성을 찾는다. name 속성이 없으면 아무것도 못가져간다.
+		$.post('../comment/comment_write.jsp', 
+			$(this).serialize(), 
+			function(data){
+				var result = eval($(data).find('result').text()); // 문자열 -> boolean 변환
+				//var result = eval($(data).find(result));
+				
+				if(result) {
+					alert($(data).find('message').text());
+				}
+				
+				var num = $(data).find('num').text();
+				var writer = $(data).find('writer').text();
+				var content = $(data).find('content').text();
+				var datetime = $(data).find('datetime').text();
+				
+				addItem(num, writer, content, datetime); // 함수 호출
+				
+				// 초기화
+				$('#writer').val(''); 
 				$('#content').val(''); 
 			}).fail(function(){
 				alert("댓글 작성하는데 실패하였습니다. 잠시후에 다시 시도하세요.");
 			});
-		//$.post('', $(this).serialize, function(){});  // 위의 방식처럼 json으로 죽 늘어뜨리는게 싫으면 serialize를 이용해도 된다.
-		// 주의) serialize는 반드시 name 속성을 찾는다. name 속성이 없으면 아무것도 못가져간다.
 		 
 		return false;
+	});
+	
+	// 삭제하기
+	$(document).on('click', '.delete_btn', function() {
+		if(confirm('선택하신 항목을 삭제하시겠습니까?')) {
+			//$(this).closest('li').remove();
+			$(this).parents('.comment_item').remove(); 
+		} else {
+			
+		}
 	});
 });
 </script>
