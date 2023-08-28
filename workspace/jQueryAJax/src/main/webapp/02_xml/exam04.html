@@ -82,7 +82,7 @@ body {
 		<legend>로그인</legend>
 		<div>
 			<label for="user_id">아이디</label>
-			<input type="text" name="uesr_id" id="user_id" />
+			<input type="text" name="user_id" id="user_id" />
 		</div>
 		
 		<div>
@@ -95,7 +95,7 @@ body {
 		</div>
 		
 		<div class="loader">
-			<img src="../image/loader.git"/>
+			<img src="../image/loader.gif"/>
 		</div>
 	</fieldset>
 </form>
@@ -103,9 +103,78 @@ body {
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
 $(function(){
-
+	$('#user_id, #user_password').bind({  // click 이벤드 대신 bind 씀
+		'focus': function(){
+			$(this).addClass('active')
+		},
+		'blur': function(){
+			$(this).removeClass('active')
+		},
+	}); 
+	
+	$('#login').bind('submit', function(){ // bind 대신 submit 써도 된다.
+		if(!$('#user_id').val()){
+			alert('아이디를 입력하세요');
+			$('#user_id').focus();
+			return false;
+		}
+		
+		if(!$('#user_password').val()){
+			alert('비밀번호를 입력하세요');
+			$('#user_password').focus();
+			return false;
+		}
+		
+		$('#login .loader').show();
+		
+		//$.post('../login/login.jsp', {}, function(){}).fail().always();
+		// $post(보낼 주소, 보낼데이터, 받았을 때)
+		$.post('../login/login.jsp',
+				$('#login').serialize(),  // serialize을 쓰는 방식. 아래의 json방식으로 보내는 방식과 내용은 동일 // '#login'대신 this 써도 된다.
+				/*
+				{
+					'user_id' : user_id,
+					'user_password' : user_password
+				}, 
+				*/
+				function(data){
+					var message = $(data).find('message').text();
+					alert(message);
+				}).fail(function(){
+					alert("로그인 실패했습니다. 다시 로그인 해주세요.")
+				}).always(function(){
+					$('#login .loader').hide() // 에러가 나건 상관없이 무조건 숨겨라
+				}); // 성공, 아니면 실패		
+		return false; // submit시 (데이터 들고)페이지 이동 못하게 막아버림
+	});
 });
 </script>
 
 </body>
 </html>
+
+<!--
+1. $.ajax({
+  url: 'URL',
+  type: 'POST',
+  data: yourData,
+  datatype: 'json'
+})
+.done(function(data, textStatus, xhr) { });
+.fail(function(xhr, textStatus, errorThrown) { });
+.always(function(data|xhr, textStatus, xhr|errorThrown) { });
+.then(function(data, textStatus, xhr|errorThrown) { });
+
+2. $(this).serialize()
+- 데이터를 보내기 위해 폼 요소 집합을 문자열로 인코딩한다.
+- 표준 URL-encoded 표기법으로 텍스트 문자열을 만든다.
+- 폼 요소 집합을 표현하는 jQuery 객체를 이용한다.
+  $('form').submit(
+   function() {
+      alert($(this).serialize());
+      return false;
+    }
+  );
+- 표준형태의 쿼리스트링을 만든다.
+  => a=1&b=2&c=3&d=4 
+-->
