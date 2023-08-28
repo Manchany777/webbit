@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+<body>
+<h1 class="title">$.ajax() 함수를 사용한 XML 데이터 읽기 (2)</h1>
+<div class="exec">
+	<input type="button" value="XML 데이터 가져오기" id="mybtn"/>
+</div>
+<div class="console" id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('#mybtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url : '../xml/xml02.xml', 
+			dataType: 'xml',  // 서버로부터 받는 데이터 '타입'
+			success: function(data){ 
+				var subject =  $(data).find('subject'); // subject가 배열로 오게 된다. (exam01.html와 달리 뒤에 text()를 붙이면 안 된다.)
+				
+				// 배열에는 항상 for문이 따라온다. 여기서는 each문 썼음
+				subject.each(function(){  // 3번 반복
+					var title = $(this).find('title').text();
+					var time = $(this).find('time').text();
+					var teacher = $(this).find('teacher').text();
+					
+					/*
+					// 1. 추출한 정보를 출력하기 위한 태그 생성
+					var div = $('<div/>'); // <div></div>
+					var p1 = $('<p/>').text(title);	// <p></p>  title의 값을 text로 출력(이 경우는 title의 내용이 단순 텍스트이기때문에
+					var p2 = $('<p/>').text(time);  // 			html()이든 text()이든 아무 상관x)
+					var p3 = $('<p/>').text(teacher);
+					
+					// 생성한 태그를 이어붙여서 출력 (메소드 체인방식)
+					div.append(p1).append(p2).append(p3) // 메소드 체인
+					//$('#result').append(div).append('<hr/>');  // 최종적으로 result 태그에 다 이어붙인격
+					
+					$('#result').append(div);    // 메소드 체인방식이 헷갈리면 이렇게 해도 된다. 단지 번거로울 뿐
+					$('#result').append('<hr/>')
+					*/
+					
+					// 2. 위와같이 정석대로 dom문법을 이용해서 태그를 만드는 방식이 번거로우면 아래처럼 백틱을 써서 태그를 붙여넣는 것도 좋다.
+					var div = `<div>`;  // 백틱(back tick)(`)을 쓰면 (일반 문자열 취급이 아닌) 그 안의 태그도 같이 집어넣는다
+					div += `<p>` + title + `</p>`;  	// `<p>aa</p>`  => 이렇게 쓰면 aa가 출력 됨
+					div += `<p>` + time + `</p>`;
+					div += `<p>` + teacher + `</p>`;
+					div += `</div>`;
+					
+					$('#result').append(div); 
+					$('#result').append('<hr/>')
+				}); // each
+			}, 
+			error: function(err){ 
+				console.log(err);
+			} 
+		});
+	});
+});
+</script>
+</body>
+</html>

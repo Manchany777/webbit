@@ -10,22 +10,32 @@ import java.util.StringTokenizer;
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		//BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		String str;
+
+		while((str=br.readLine()) != null) {
+			st = new StringTokenizer(str, " ");
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			sb.append(a+b).append("\n");
+		}//while
+		br.close();
+		System.out.print(sb);
 		
-		int a  = Integer.parseInt(st.nextToken());
-		int b  = Integer.parseInt(st.nextToken());
-		//int a = Integer.parseInt(br.readLine());
-		//int b = Integer.parseInt(br.readLine());
-		
-		System.out.println(a + b);
-		for(int i=0; i<5; i++) {
-			
+		// 밑에거 안 됨
+		while(true) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			sb.append(a+b).append("\n");
+			if(st == null) {
+				break;
+			}
 		}
-		
-		bw.flush();
-		bw.close();
+		System.out.print(sb);
 		br.close();
 	}
 }

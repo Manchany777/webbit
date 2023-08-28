@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+<h1 class="title">$.ajax() 함수를 사용한 텍스트 읽기</h1>
+<div class="exec">
+	<input type="button" value="txt파일 가져오기" id="mybtn"/>
+</div>
+<div class="console" id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('#mybtn').click(function(){
+		$.ajax({
+			type: 'get', 				// default : get방식 (주소를 통해 데이터를 옮겨줌)
+			url : '/jQueryAJax/text/text01.txt',  // 절대번지,   'http://localhost:8080' 생략 가능 단, 슬러쉬(/)는 생략하면 안 된다.
+			//data: 'parameter', 		// 위의 url로 갈 때 무엇을 들고갈 것이냐를 정해줌 (아무것도 없으면 생략가능) = 서버로 보내는 데이터 (exam03.html에서 자세히 다룸)
+			dataType: 'text', 			// 서버로부터 돌아올 때 어떤 타입의 데이터를 가져올 것이냐를 정해줌
+			timeout: 3000,  			// 응답받는데 3초까지는 기다림
+			cache: false, 				// 저장 안함
+			success: function(data){ 	// 성공시 (주의 : 이곳의 매개변수의 data는 위의 키값의 data와 아무 상관이 없다. 그냥 임의로 잡아준 이름)
+				$('#result').html(data);
+			}, 
+			error: function(xhr, textStatus, errorThrown){  	// 실패시 (xhr = XMLHttpRequest)
+				$('div').html('<div>' + textStatus + '(HTTP-' + xhr.status + '/' + errorThrown + ')' + '</div>');
+			}  // textStatus : error, xhr.status : 404, errorThrown : 서버측에서 받아오는 에러메시지 (지금은 받아오는 게 없어 아무것도 안뜬다.)
+		});
+	});
+});
+</script>
+</body>
+</html>
