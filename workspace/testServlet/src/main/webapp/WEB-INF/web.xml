@@ -3,12 +3,21 @@
   <display-name>testServlet</display-name>
   
   <servlet>
-  	<servlet-name></servlet-name>
-  	<servlet-class></servlet-class>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>com.hello.HelloServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-	  <servlet-name></servlet-name>
-	  <url-pattern></url-pattern>
+	  <servlet-name>HelloServlet</servlet-name>
+	  <url-pattern>/HelloServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ParamServlet</servlet-name>
+  	<servlet-class>com.param.ParamServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	  <servlet-name>ParamServlet</servlet-name>
+	  <url-pattern>/param</url-pattern>
   </servlet-mapping>
   
   

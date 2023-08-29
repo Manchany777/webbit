@@ -214,7 +214,9 @@ $(function(){ // 위에서 만든 getToday 함수를 호출
 		
 		/*
 		$.post('../comment/comment_write.jsp',  // comment_write에게 보내기 (실전에선 DB단에 보내는 것)
-			{									//
+			{			
+				'num': $('input[name="number"]').val(),
+				'datetime' : $('input[name="datetime"]').val(),
 				'writer': $('#writer').val(), 
 				'content': $('#content').val()
 			}, 

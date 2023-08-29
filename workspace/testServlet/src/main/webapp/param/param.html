@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+	color: red;
+	font-size: 9pt;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+<h2>연령제한</h1>
+<form name="paramForm" method="get" action="http://localhost:8080/testServlet/param"> 
+<!-- 주의 : html에서의 method는 서비스 요청방식을 말한다.-->
+	<table border="1" cellpadding="5" cellspacing="0">
+		<tr>
+			<th width="50px" align="center">이 름</th>
+			<td width="80px">
+				<input type="text" name="name"/>
+				<div id="nameDiv"></div>
+			</td>
+		</tr>
+		<tr>
+			<th align="center">나 이</th>
+			<td>
+				<input type="text" name="age" size="7"/>
+				<div id="ageDiv"></div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button" value="보내기" onclick="checkInput()"/>
+				<input type="reset" value="취소"/>
+			</td>
+		</tr>
+</table>
+</form>
+
+
+<script>
+	function checkInput() {
+		// 초기화
+		document.getElementById("nameDiv").innerText = "";
+		document.getElementById("ageDiv").innerHTML = "";
+		
+		//if(document.getElementById("name").value == "")
+		if(document.paramForm.name.value == "") {
+			document.getElementById("nameDiv").innerText = "이름 입력";
+		} else if(document.paramForm.age.value == "") {
+			document.getElementById("ageDiv").innerHTML = "나이 입력";
+		} else {
+			document.paramForm.submit();  // submit과 action은 짝꿍
+		}
+	}
+	//자바스크립트 함수 checkInput()
+	//이름에 값이 없으면 "이름 입력" -> 빨강, 9pt, 굵게
+	//나이에 값이 없으면 "나이 입력" -> 빨강, 9pt, 굵게
+</script>
+</body>
+</html>
