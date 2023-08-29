@@ -243,7 +243,7 @@ $(function(){ // 위에서 만든 getToday 함수를 호출
 		//$.post('', $(this).serialize(), function(){});  // 위의 방식처럼 json으로 죽 늘어뜨리는게 싫으면 serialize를 이용해도 된다.
 		// 주의) serialize는 반드시 name 속성을 찾는다. name 속성이 없으면 아무것도 못가져간다.
 		$.post('../comment/comment_write.jsp', 
-			$(this).serialize(), 
+			$(this).serialize(),  
 			function(data){
 				var result = eval($(data).find('result').text()); // 문자열 -> boolean 변환
 				//var result = eval($(data).find(result));
@@ -269,11 +269,30 @@ $(function(){ // 위에서 만든 getToday 함수를 호출
 		return false;
 	});
 	
-	// 삭제하기
-	$(document).on('click', '.delete_btn', function() {
-		if(confirm('선택하신 항목을 삭제하시겠습니까?')) {
+	// 삭제하기 - 동적처리
+	$('div #comment_list').on('click', '.delete_btn', function() {  // 'div #comment_list' 대신 'document' 써도 된다.
+		if(confirm('선택하신 댓글을 삭제하시겠습니까?')) {
+			// 내가 푼 것
 			//$(this).closest('li').remove();
-			$(this).parents('.comment_item').remove(); 
+			//$(this).parents('.comment_item').remove(); 
+			
+			// 쌤의 정답
+			var num = $(this).parents('li').attr('data-num'); // 글번호(data-num) 얻어오기 // attr or prop
+			var target = $(this).parents('.comment_item');
+			
+			$.post('../comment/comment_delete.jsp', 
+					{}, 
+					function(data){
+						var result = eval($(data).find('result').text());
+						
+						if(result) {
+							alert($(data).find('message').text()); // 댓글 삭제 완료 메시지 뜨는지 테스트
+							target.remove();
+						}
+					}
+				).fail(function(){
+					alert("댓글 삭제하는데 실패하였습니다. 잠시후에 다시 시도하세요.");
+			});
 		} else {
 			
 		}

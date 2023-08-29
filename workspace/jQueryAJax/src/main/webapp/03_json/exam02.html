@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+<h1 class="title">$.ajax() 함수를 사용한 JSON으로 데이터 읽기 (2)</h1>
+<div class="exec">
+	<input type="button" value="JSON 데이터 가져오기" id="mybtn"/>
+</div>
+<div class="console" id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('#mybtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '../json/json02.json',  // 절대번지 <-> 상대번지 : '../json/json01.json'
+			dataType: 'json',
+			success: function(data){
+				console.log(JSON.stringify(data)); // 객체형식으로 그대로 가져오게 하는 방법
+				
+				// json 배열을 꺼내오기 위한 for문
+				var subject = data.school.subject;
+				for(var i=0; i<subject.length; i++){
+					var title = subject[i].title;
+					var time = subject[i].time;
+					var teacher = subject[i].teacher;
+				/*
+				var ul = $('<ul/>');  // 귀찮으면 대신 백틱 써도 됨
+				var li1 = $('<li/>').html(title);
+				var li2 = $('<li/>').html(time);
+				var li3 = $('<li/>').html(teacher);
+				
+				ul.append(li1).append(li2).append(li3);
+				*/
+				
+				// 백틱으로 처리
+				var ul = `<ul>`
+					   + `<li>` + title + `</li>`
+					   + `<li>` + time + `</li>`
+					   + `<li>` + teacher + `</li>`
+					   + `</ul>`;
+				
+				
+				$('#result').append(ul).append('<hr/>');
+				
+				}//for
+				
+			},
+			error: function(err){
+				console.log(err);
+			}
+		}); //$.ajax
+	});
+});
+</script>
+</body>
+</html>

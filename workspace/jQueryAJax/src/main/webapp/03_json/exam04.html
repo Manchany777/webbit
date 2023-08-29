@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table {
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+}
+table tr:after {
+	content: '';
+	display: block;
+	float: none;
+	clear: both;
+}
+table .left {
+	text-align: left;
+}
+thead, tbody, tr {
+	display: block;
+	width: 100%;
+}
+td, th {
+	display: block;
+	float: left;
+	padding: 10px 0;
+}
+table thead {
+	border-bottom: solid 2px #285E8E;
+	font-weight: bold;
+}
+table tbody tr {
+	border-bottom: 1px dotted #ccc;
+}
+.example table .id {
+	width: 10%;
+}
+.example table .title {
+	width: 60%;
+}
+.example table .url {
+	width: 10%;
+}
+.example table .date {
+	width: 20%;
+}
+</style>
+</head>
+<body>
+<!-- 게시판 제목 -->
+<h1 class="title"></h1>
+
+<!-- 게시판 설명 -->
+<div class="exec"></div>
+
+<div class="exec">
+	<!-- 게시물 수 -->
+	총 게시물 수 : <span></span>개
+</div>
+
+<div class="example">
+	<table>
+		<thead>
+			<tr>
+				<th class="id">번호</th>
+				<th class="title">제목</th>
+				<th class="url">이미지</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 제목 -->
+		</tbody>
+	</table>
+</div>
+
+
+<!-- 스크립트 파일 import -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="../json/jquery.tmpl.min.js"></script>
+
+<!-- 틀 : 탬플릿으로 사용할 HTML 태그 -->
+<script id="itemTemplate">
+	<tr>
+		<td class="id">${id}</td>
+		<td class="title">${title}</td>
+		<td class="url"><img src= "${url}" width="100px" height="100px"/></td>
+	</tr>
+</script>
+<!-- 틀 : 탬플릿 끝 -->
+
+<!-- jQuery 소스코드 -->
+<script>
+$(function(){
+	$.get('../json/bbs.json', {}, function(data){
+		$('h1.title').html(data.title);
+		$('div.exec:eq(0)').text(data.description);
+		$('div.exec:eq(1) span').html(data.total);
+	});
+});
+</script>
+<script>
+$(function(){
+	$.get('https://jsonplaceholder.typicode.com/photos', {}, function(data){	
+		// item을 담고 있는 배열을 탬플릿에 통째로 저장
+		var tmpl = $('#itemTemplate').tmpl(data);
+		
+		// 화면 출력 (이런 방식으로 하면 for문 안돌려도 됨)
+		$('.example > table > tbody').append(tmpl);
+	});
+});
+</script>
+
+</body>
+</html>

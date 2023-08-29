@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/reset.css">
+</head>
+<body>
+<h1 class="title">$.ajax() 함수를 사용한 JSON으로 데이터 읽기 (1)</h1>
+<div class="exec">
+	<input type="button" value="JSON 데이터 가져오기" id="mybtn"/>
+</div>
+<div class="console" id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+	$('#mybtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '/jQueryAJax/json/json01.json',  // 절대번지 <-> 상대번지 : '../json/json01.json'
+			dataType: 'json',
+			success: function(data){
+				alert(JSON.stringify(data)); // 객체형식으로 그대로 가져오게 하는 방법
+											 // JSON.stringify() 메서드는 JavaScript 값이나 객체를 JSON 문자열로 변환해준다.
+				
+				// 헷갈리는건 xml폴더의 exam01.html의 xml과 비교해서 봐라
+				var title = data.school.subject.title;
+				var time = data.school.subject.time;
+				var teacher = data.school.subject.teacher;
+				
+				var ul = $('<ul/>');  // 귀찮으면 대신 백틱 써도 됨
+				var li1 = $('<li/>').html(title);
+				var li2 = $('<li/>').html(time);
+				var li3 = $('<li/>').html(teacher);
+				
+				ul.append(li1).append(li2).append(li3);
+				
+				$('#result').append(ul);
+			},
+			error: function(err){
+				console.log(err);
+			}
+		}); //$.ajax
+	});
+});
+</script>
+</body>
+</html>
