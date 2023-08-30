@@ -69,9 +69,10 @@ public class DBTestDAO {
 
 	public List<DBTestDTO> select() {
 		List<DBTestDTO> list = new ArrayList<DBTestDTO>(); // 부모 = 자식 (다형성)
-		String sql = "select name, age, height, to_char(logtime, 'YYYY-MM-DD') as logtime from (select * from dbtest order by logtime asc) tt";  // 날짜 - yyyy.mm.dd 변환
+		String sql = "select name, age, height, to_char(logtime, 'YYYY-MM-DD') as logtime from (select * from dbtest order by logtime desc) tt";  // 날짜 - yyyy.mm.dd 변환
 		// 주의 : 반드시 컬럼명을 logtime으로 바꿔놔야한다. 아래에서 rs.getString("logtime")으로 logtime 컬럼에서 꺼내올 것이라고 선언했기때문에
-
+		// select name, age, height, to_char(logtime, 'YYYY-MM-DD') as logtime from dbtest order by logtime
+		
 		getConnection(); // 접속
 		
 		try {

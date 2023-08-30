@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#guestForm div {
+	color: red;
+	font-size: 9pt;
+	font-weight: bold;
+}
+textarea, input {
+	border: 2px solid rgb(192, 192, 192);
+    	/** outline-color 속성을 추가하면 
+    	focus될 때 테두리 색상을 지정할 수 있다.**/
+    outline-color: #FE6B8B;
+	resize: none;
+}
+
+textarea {
+	width: 600px;
+	height: 360px;
+}
+tr th {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<style>
+#guestForm div {
+	color: red;
+	font-size: 9pt;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+<form name="guestForm" id="guestForm" method="get" action="http://localhost:8080/guestbookServlet/GuestbookWriteServlet">
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th style="width: 70px;">작성자</th>
+		<td>
+			<input type="text" name="name" id="name" size="30" maxlength="30" placeholder="작성자 입력"/>
+		</td>
+	</tr>
+	<tr>
+		<th>이메일</th>
+		<td>
+			<input type="email" name="email" id="email" size="50" maxlength="30" placeholder="이메일 입력"/>
+			<div id="emailDiv"></div>
+		</td>
+	</tr>
+	<tr>
+		<th>홈페이지</th>
+		<td>
+			<input type="text" name="homepage" id="homepage" size="70" maxlength="35" value="http://"/>
+		</td>
+	</tr>
+	<tr>
+		<th>제목</th>
+		<td style="width: 550px;">
+			<input type="text" name="subject" id="subject" size="90" maxlength="500" placeholder="제목 입력"/>
+			<div id="subjectDiv"></div>
+		</td>
+	</tr>
+	<tr>
+		<th>내용</th>
+		<td>
+			<textarea name="content" id="content" maxlength="4000" ></textarea>
+			<div id="contentDiv"></div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" value="글작성" id="checkInput"/>
+			<input type="reset" value="다시작성"/>
+			<input type="button" value="글목록" onclick="location.href='/guestbookServlet/GuestbookListServlet'" />
+		</td>
+	</tr>
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!--<script type="text/javascript">
+$('#mailchk').click(function(){
+	if (verifyEmail.match(regExpr) != null) {
+		$('#emailDiv').text('제목을 입력하세요');
+		//$('font[class=emailDiv]').attr('color','red');
+		//$('font[class=emailDiv]').text('유효하지 않은 형식입니다.');
+		$('#email').focus();
+		return false;
+	} else {
+		$('#emailDiv').text('하세요');
+		//$('font[class=emailDiv]').attr('color','blue');
+		//$('font[class=emailDiv]').text('제대로 입력하였습니다.');
+		$('#email').focus();
+		return false;
+	}
+});
+</script>-->
+<script type="text/javascript">
+$('#checkInput').click(function(){
+	$('#subjectDiv').empty();
+	$('#contentDiv').empty();
+	
+	if($('input[name="subject"]').val() == '') $('#subjectDiv').text('제목을 입력하세요');
+	else if ($('#content').val() == '') $('#contentDiv').text('내용을 입력하세요');
+	else $('#guestForm').submit();
+});
+</script>
+</table>
+</body>
+</html>
