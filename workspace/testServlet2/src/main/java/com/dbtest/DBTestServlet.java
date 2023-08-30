@@ -44,7 +44,7 @@ public class DBTestServlet extends HttpServlet {
 		if(su == 1) {
 			out.println("<h3>등록 완료</h3>");
 			out.println("<br/><br/>");
-			out.println("<input type='button' value='뒤로' onclick=location.href=''/>");
+			out.println("<input type='button' value='목록' onclick=location.href='/testServlet2/DBListServlet'; />");
 		} else {
 			out.println("<h3>등록 실패</h3>");
 			out.println("<br/><br/>");

@@ -11,9 +11,5 @@ public class DBTestDTO {
 	private String name;
 	private String age;
 	private String height;
-	private String longtime;  //  엄격하게 하고 싶으면 Date로 받아도 된다.
-	
-	
-
-	
+	private String logtime;  //  엄격하게 하고 싶으면 Date로 받아도 된다.
 }

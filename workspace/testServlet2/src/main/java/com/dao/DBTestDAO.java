@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bean.DBTestDTO;
 
@@ -59,10 +61,45 @@ public class DBTestDAO {
 				if(conn != null) conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			}// finally-try-catch
 		}
 		
 		return su;
+	}
+
+	public List<DBTestDTO> select() {
+		List<DBTestDTO> list = new ArrayList<DBTestDTO>(); // 부모 = 자식 (다형성)
+		String sql = "select * from dbtest";  // 날짜 - yyyy.mm.dd 변환
+
+		getConnection(); // 접속
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // prepareStatement - sql문장을 전담으로 처리해주는 가이드
+			rs = pstmt.executeQuery(); 			// 실행 - ResultSet 리턴  사이즈가 없기때문에 현재값이 없을때까지 계속 반복해야함
+			
+			while(rs.next()) {
+				DBTestDTO dBTestDTO = new DBTestDTO();
+				dBTestDTO.setName(rs.getString("name")); // name 컬럼에서 꺼내온 데이터를 DTO에 담기
+				dBTestDTO.setAge(rs.getString("age"));
+				dBTestDTO.setHeight(rs.getString("height"));
+				dBTestDTO.setLogtime(rs.getString("logtime"));
+				
+				list.add(dBTestDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			list = null; // 에러 발생시 list가 넘어가지 못하도록 NullPointException이 떨어지도록 설정
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}// finally-try-catch
+		}
+		
+		return list;
 	}
 
 }
