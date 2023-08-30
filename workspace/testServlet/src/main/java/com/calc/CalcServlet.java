@@ -15,19 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/calc")
 public class CalcServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
-    public CalcServlet() {
-        super();
-
-    }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 데이터 받기
 		int xvalue = Integer.parseInt(request.getParameter("x"));
 		int yvalue = Integer.parseInt(request.getParameter("y"));
+		double nanugi = (double) xvalue / yvalue;
+		String nanugiResult = String.format("%.3f", nanugi);
 		
 		// 응답
 		response.setContentType("text/html;charset=UTF-8"); 
@@ -37,7 +32,7 @@ public class CalcServlet extends HttpServlet {
 		out.println(xvalue + " + " + yvalue + " = " + (xvalue + yvalue) + "<br/><br/>");
 		out.println(xvalue + " - " + yvalue + " = " + (xvalue - yvalue) + "<br/><br/>");
 		out.println(xvalue + " * " + yvalue + " = " + (xvalue * yvalue) + "<br/><br/>");
-		out.println(xvalue + " / " + yvalue + " = " + (xvalue / yvalue) + "<br/><br/>");
+		out.println(xvalue + " / " + yvalue + " = " + (nanugiResult) + "<br/><br/>");
 		out.println("<br/>");
 		out.println("<input type='button' value='뒤로가기' onclick='history.go(-1);' />");
 		out.println("</body>");

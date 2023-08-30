@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#testForm div {
+	color: red;
+	font-size: 9pt;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+<form name="testForm" id="testForm" method="get" action="">
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr align="center">
+		<th width="50px">이름</th>
+		<td width="150px">
+			<input type="text" name="name" id="name" size="9" maxlength="5" placeholder="이름입력"/>
+			<div id="nameDiv"></div>
+		</td>
+	</tr>
+	<tr align="center">
+		<th>나이</th>
+		<td>
+			<input type="number" name="age" id="age" size="9" maxlength="3" placeholder="나이입력"/>
+			<div id="ageDiv"></div>
+		</td>
+	</tr>
+	<tr align="center">
+		<th>키</th>
+		<td>
+			<input type="number" name="height" id="height" size="9" maxlength="4" placeholder="키입력"/>
+			<div id="heightDiv"></div>
+		</td>
+	</tr>
+	
+	<tr align="center">
+		<td colspan="2">
+			<input type="button" name="submit" value="등록" id="checkInput"/>
+			<input type="reset" name="reset" value="다시작성"/>
+		</td>
+	</tr>
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">
+$('#checkInput').click(function(){
+	$('#nameDiv').empty();
+	$('#ageDiv').empty();
+	$('#heightDiv').empty();
+	
+	if($('#name').val() == '') $('#nameDiv').text('이름을 입력하세요');
+	else if ($('input[name="age"]').val() == '') $('#ageDiv').text('나이를 입력하세요');
+	else if ($('input[name="height"]').val() == '') $('#heightDiv').text('키를 입력하세요');
+	else $('#testForm').submit();
+});
+</script>
+</table>
+</body>
+</html>

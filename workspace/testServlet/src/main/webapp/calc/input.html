@@ -12,14 +12,14 @@ div {
 </style>
 </head>
 <body>
-<h2>연령제한</h1>
-<form name="paramForm" method="get" action="http://localhost:8080/testServlet/calc"> 
+<h2>계산기</h2>
+<form name="paramForm" id="calcForm" method="get" action="http://localhost:8080/testServlet/calc"> 
 <!-- 주의 : html에서의 method는 서비스 요청방식을 말한다.-->
 	<table border="1" cellpadding="5" cellspacing="0">
 		<tr>
 			<th width="50px" align="center">X</th>
 			<td width="80px">
-				<input type="text" name="x" size="8"/>
+				<input type="text" name="x" id="x" size="8"/>
 				<div id="xDiv"></div>
 			</td>
 		</tr>
@@ -33,15 +33,27 @@ div {
 		
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="게산" onclick="checkInput()"/>
+				<input type="button" value="계산" id="checkInput"/> <!-- 자바스크립트 방식은 onclick="checkInput()" -->
+				<!-- <input type="button" value="계산" onclick="checkInput()"/> --> 
 				<input type="reset" value="취소"/>
 			</td>
 		</tr>
 </table>
 </form>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">
+/* jQuery버전 */
+$('#checkInput').click(function(){
+	$('#xDiv').empty();
+	$('#yDiv').empty();
+	
+	if($('#x').val() == '') $('#xDiv').text('x값을 입력하세요');
+	else if ($('input[name="y"]').val() == '') $('#yDiv').text('y값 입력');
+	else $('#calcForm').submit();
+});
 
-<script>
+/* Javascript 버전 */
 	function checkInput() {
 		// 초기화
 		document.getElementById("xDiv").innerText = "";
