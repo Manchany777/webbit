@@ -49,6 +49,8 @@ public class DBListServlet extends HttpServlet {
 			} // for
 			
 			out.println("</table>");
+			out.println("<img src='/testServlet2/image/apeach.png' alt='어피치' witdh='50' height='50' " +  // 여긴 자바파일쪽으로 상대번지가 불가능
+						"onclick=location.href='/testServlet2/exam/input.html' style='cursor: pointer;'> "); 
 		}// if
 		
 		out.println("</body>");
