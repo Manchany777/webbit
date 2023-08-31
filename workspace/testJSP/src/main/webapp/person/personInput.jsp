@@ -59,10 +59,10 @@
         <th align="center">과목</td>
         <td>
         	<select name="subject" id="subject" multiple size="5">
-				<option value="java" selected="selected">JAVA</option>
-				<option value="servlet">Servlet</option>
-				<option value="jsp">JSP</option>
-				<option value="spring">SPRING</option>
+				<option value="JAVA" selected="selected">JAVA</option>
+				<option value="Servlet">Servlet</option>
+				<option value="JSP">JSP</option>
+				<option value="SPRING">SPRING</option>
 			</select>
         </td>
     </tr>
