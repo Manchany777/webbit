@@ -20,9 +20,11 @@ import guestbook.dao.GuestbookDAO;
 public class GuestbookWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 데이터
+		request.setCharacterEncoding("UTF-8"); // post 방식에서 한글이 깨지지 않도록 설정
+		
 		String name = request.getParameter("name"); 	// age가지고 계산할 거 아니니까 그냥 다 String으로 받는다.
 		String email = request.getParameter("email");
 		String homepage = request.getParameter("homepage");
@@ -38,21 +40,28 @@ public class GuestbookWriteServlet extends HttpServlet {
 		
 		// DB
 		GuestbookDAO guestbookDAO = new GuestbookDAO();
-		int su = guestbookDAO.insert(guestbookDTO);
+		//int su = guestbookDAO.insert(guestbookDTO);  // 실패는 없다는 조건이니까 굳이 su 안받아와도 된다.
+		guestbookDAO.insert(guestbookDTO);
 		
 		// 응답
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");  // get 방식에서 한글이 깨지지 않도록 설정
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
 		
-		if(su == 1) {
-			out.println("<h3>작성하신 글을 등록하였습니다.</h3>");
-			out.println("<br/><br/>");
-			out.println("5초후 목록 페이지로 자동으로 이동합니다....");
-			out.println("<br/><br/>");
-			out.println("<input type='button' value='글목록' onclick=location.href='/guestbookServlet/GuestbookListServlet'; />");
-		} 
+		out.println("<h3>작성하신 글을 등록하였습니다.</h3>");
+		out.println("<br/><br/>");
+		out.println("5초후 목록 페이지로 자동으로 이동합니다....");
+		out.println("<br/><br/>");
+		out.println("<input type='button' value='글목록' onclick=location.href='/guestbookServlet/GuestbookListServlet'; />");
+		
+//		if(su == 1) {
+//			out.println("<h3>작성하신 글을 등록하였습니다.</h3>");
+//			out.println("<br/><br/>");
+//			out.println("5초후 목록 페이지로 자동으로 이동합니다....");
+//			out.println("<br/><br/>");
+//			out.println("<input type='button' value='글목록' onclick=location.href='/guestbookServlet/GuestbookListServlet'; />");
+//		} 
 		
 		out.println("</body>");
 		out.println("</html>");

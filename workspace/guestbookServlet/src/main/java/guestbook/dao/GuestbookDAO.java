@@ -38,9 +38,11 @@ public class GuestbookDAO {
 	
 	///////////////////////////////////////////////////////////////////////
 
-	public int insert(GuestbookDTO guestbookDTO) {
-		int su = 0;
-		String sql = "insert into guestbook values(seq_guestbook.nextval, ?, ?, ?, ?, ?, sysdate)";
+	public void insert(GuestbookDTO guestbookDTO) {
+		//int su = 0;
+		//String sql = "insert into guestbook values(seq_guestbook.nextval, ?, ?, ?, ?, ?, sysdate)";
+		String sql = "insert into guestbook(seq, name, email, homepage, subject, content) values(seq_guestbook.nextval, ?, ?, ?, ?, ?)";
+				// sql문에서 sysdate를 default로 넣으면 여기서는 컬럼명을 다 적어야 에러가 안생긴다.
 		getConnection(); // 오라클 접속
 		
 		// 쿼리문(insert문)을 자바에서 수행(처리)하기 위한 가이드
@@ -55,7 +57,8 @@ public class GuestbookDAO {
 			pstmt.setString(5, guestbookDTO.getContent());
 			
 			// 오라클 문장을 실행
-			su = pstmt.executeUpdate(); // 실행 - 개수 리턴
+			//su = pstmt.executeUpdate(); // 실행 - 개수 리턴
+			pstmt.executeUpdate();
 			// su는 수행한 쿼리문의 개수 ((name, age, height 3개의 컬럼을 insert하는)1개의 쿼리문이 수행되었습니다 할 때의 숫자)
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,7 +71,7 @@ public class GuestbookDAO {
 			}// finally-try-catch
 		}
 		
-		return su;
+		//return su;
 	}
 
 	public List<GuestbookDTO> select() {

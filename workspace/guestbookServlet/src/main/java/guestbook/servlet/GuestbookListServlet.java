@@ -59,7 +59,7 @@ public class GuestbookListServlet extends HttpServlet {
 				out.println("</tr>");
 				out.println("<td colspan='4'>"); 
 				out.println("<div style='width: 500px; height: 200px; overflow: auto;'>"); 
-				out.println(guestbookDTO.getContent());
+				out.println("<pre>" + guestbookDTO.getContent() + "</pre>");
 				out.println("</div>");
 				out.println("</td>");
 				out.println("</table>");
