@@ -22,7 +22,7 @@ public class GuestbookListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 데이터(x) -> 페이징 처리하면서 새로 추가
+		// 데이터(x) -> (o) 페이징 처리하면서 새로 추가
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		int endNum = pg*3;
