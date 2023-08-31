@@ -74,18 +74,25 @@ public class GuestbookDAO {
 		//return su;
 	}
 
-	public List<GuestbookDTO> select() {
+	public List<GuestbookDTO> getAllList(int startNum, int endNum) {
 		List<GuestbookDTO> list = new ArrayList<GuestbookDTO>(); // 부모 = 자식 (다형성)
-		String sql = "select seq, name, email, homepage, subject, content, "
-				+ " to_char(logtime, 'YYYY-MM-DD') as logtime from (select * from guestbook order by logtime desc) tt";  // 날짜 - yyyy.mm.dd 변환
-		// 주의 : 반드시 컬럼명을 logtime으로 바꿔놔야한다. 아래에서 rs.getString("logtime")으로 logtime 컬럼에서 꺼내올 것이라고 선언했기때문에
-		// select name, age, height, to_char(logtime, 'YYYY-MM-DD') as logtime from dbtest order by logtime
+		String sql = "select * from  "
+					+ "(select rownum rn, tt.* from "
+					+ "(select * from guestbook order by seq desc) tt"
+					+ ") where rn >=? and rn <=?";
+		// select name, age, height, to_char(logtime, 'YYYY-MM-DD') as logtime from dbtest order by logtime -> 페이징 처리전 sql문장
 		
 		getConnection(); // 접속
 		
 		try {
 			pstmt = conn.prepareStatement(sql); // prepareStatement - sql문장을 전담으로 처리해주는 가이드
+			
+			// ?에 데이터 대입
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			
 			rs = pstmt.executeQuery(); 			// 실행 - ResultSet 리턴  사이즈가 없기때문에 현재값이 없을때까지 계속 반복해야함
+			
 			
 			while(rs.next()) {
 				GuestbookDTO guestbookDTO = new GuestbookDTO();
@@ -113,5 +120,30 @@ public class GuestbookDAO {
 		}
 		
 		return list;
+	}
+	
+	public int getTotalA() {
+		int totalA = 0;
+		String sql = "select count(*) from guestbook";
+		getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			totalA = rs.getInt(1); // count(*)가 첫번째 컬럼이니까
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}// finally-try-catch
+		}
+		return totalA;
 	}
 }
