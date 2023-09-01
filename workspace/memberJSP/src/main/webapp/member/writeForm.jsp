@@ -68,9 +68,9 @@ h3 { text-align: center; }
         		parrern="[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"/>
         	<select name="email_3" id="emailSelect" style="width: 100px;"> 
        			<option value="">직접입력</option>
-				<option value="naver">naver.com</option>
-				<option value="google">google.com</option>
-				<option value="nate">nate.com</option>
+				<option value="naver.com">naver.com</option>
+				<option value="google.com">google.com</option>
+				<option value="nate.com">nate.com</option>
 			</select>
         </td>
     </tr>

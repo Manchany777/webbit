@@ -34,9 +34,9 @@ response.setContentType("text/html;charset=UTF-8");
 
 <script type="text/javascript">
 function checkIdClose(id){
-	opner.document.getElementById("id").value = id; // 중복체크에서 사용하기로 한 아이디를 찍어주기
+	opener.document.getElementById("id").value = id; // 중복체크에서 사용하기로 한 아이디를 찍어주기
 	window.close(); // 중복체크 창 닫기
-	opner.document.getElementById("pwd").focus(); // 중복체크 완료 후 비밀번호 창으로 포커스 맞추기
+	opener.document.getElementById("pwd").focus(); // 중복체크 완료 후 비밀번호 창으로 포커스 맞추기
 }
 </script>
 </body>

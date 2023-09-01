@@ -61,7 +61,10 @@ String[] subject = request.getParameterValues("subject");
 		<%case cyan: %>
 			<%="하늘" %>
 			<%break; %>
-	<%} %>  --%>
+	<%} %>  --%>  
+	<%-- switch문은 이거 자체가 하나의 큰 덩어리이다. 
+		jsp문법에서는 하나의 case구문을 이렇게 쪼개놓으면 인식을 못한다. 
+		따라서 swith문은 이 방식으로는 쓸 수 없다. 굳이 하려면 if문으로 바꿔야 한다. --%>
 
 ● 취미 : 
 	<%for(String hob : hobby) { %>

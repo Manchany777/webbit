@@ -47,24 +47,6 @@ ul {
 			break;
 	}%><br><br>
 
-<%-- 	<%switch (color) { %>
-		<%case red: %>
-			<%="빨강" %>
-			<%break; %>
-		<%case green: %>
-			<%="초록" %>
-			<%break; %>
-		<%case blue: %>
-			<%="파랑" %>
-			<%break; %>
-		<%case magenta: %>
-			<%="보라" %>
-			<%break; %>
-		<%case cyan: %>
-			<%="하늘" %>
-			<%break; %>
-	<%} %>  --%>
-
 ● 취미 : 
 	<%for(int i=0; i<hobby.length; i++) { %>
 		<%=hobby[i] %>

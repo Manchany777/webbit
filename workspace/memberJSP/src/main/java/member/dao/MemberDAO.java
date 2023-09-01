@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import member.dto.MemberDTO;
+
 public class MemberDAO {
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -60,6 +62,45 @@ public class MemberDAO {
 			}// finally-try-catch
 		}
 		return exist;
+	}
+	
+	public int regist(MemberDTO memberDTO) {
+		int su = 0;
+		String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+		getConnection(); // 오라클 접속
 		
+		// 쿼리문(insert문)을 자바에서 수행(처리)하기 위한 가이드
+		try {
+			pstmt = conn.prepareStatement(sql); // 생성
+			
+			// ? 에 데이터 대입
+			pstmt.setString(1, memberDTO.getName());
+			pstmt.setString(2, memberDTO.getId());
+			pstmt.setString(3, memberDTO.getPwd());
+			pstmt.setString(4, memberDTO.getGender());
+			pstmt.setString(5, memberDTO.getEmail1());
+			pstmt.setString(6, memberDTO.getEmail2());
+			pstmt.setString(7, memberDTO.getTel1());
+			pstmt.setString(8, memberDTO.getTel2());
+			pstmt.setString(9, memberDTO.getTel3());
+			pstmt.setString(10, memberDTO.getZipcode());
+			pstmt.setString(11, memberDTO.getAddr1());
+			pstmt.setString(12, memberDTO.getAddr2());
+			
+			// 오라클 문장을 실행
+			su = pstmt.executeUpdate(); // 실행 - 개수 리턴
+			// su는 수행한 쿼리문의 개수 ((name, age, height 3개의 컬럼을 insert하는)1개의 쿼리문이 수행되었습니다 할 때의 숫자)
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}// finally-try-catch
+		}
+		
+		return su;
 	}
 }
