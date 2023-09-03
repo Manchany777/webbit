@@ -46,11 +46,11 @@ $(function(){
 		}
 		
 		// 중복체크 후 아이디 변경시 중복 체크 상태 초기화
-		$("#id").change(function() {
-		    document.getElementsByName("useCheckedId")[0].value = "idUnchecked";
- 		});
-		/*$("#id").on("input", function() {
+		/*$("#id").change(function() {
 		    document.getElementsByName("useCheckedId")[0].value = "idUnchecked";
  		});*/
+		$("#id").on("input", function() {
+		    document.getElementsByName("useCheckedId")[0].value = "idUnchecked";
+ 		});
 	});
 });
