@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.dao.MemberDAO" %>
+    
+<%
+// 데이터
+String id = request.getParameter("id");
+
+// DB
+MemberDAO memberDAO = new MemberDAO();
+
+// 응답
+response.setContentType("text/html;charset=UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,6 +133,7 @@ function checkID(){
 		document.getElementById("idDiv").innerText = "먼저 아이디를 입력하세요.";
 	else
 		window.open("checkId.jsp?id="+id+"&useCheckedId=idChecked", "checkId", "width=300 height=150 top=200 left=400 scrollbars=no toolbar=no menubar=no status=no location=no");  // 두번째 인자값 - 새창 무한증식 방지(이름자체는 아무거나 넣어도 무방)
+
 };    			 // "checkId.jsp?변수=값"   // 내가 적은 아이디가 중복체크 페이지로 값을 넘길 수 있도록
 </script>
 
