@@ -28,7 +28,9 @@ $(function(){
 		} else if ($('#pwd').val() != $('#repwd').val()) {
 			$('#pwdDiv').text('비밀번호가 맞지 않습니다.');
 			$('#pwd').focus();
-		} else {
+		} else if($('input[name="useCheckedId"]').val() != "idChecked") {
+       		alert("중복체크를 해 주세요.");
+    	} else {
 			$('#memberWriteForm').submit();
 		}
 	});

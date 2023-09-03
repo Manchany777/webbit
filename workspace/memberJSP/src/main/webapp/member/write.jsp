@@ -51,7 +51,7 @@ int su = memberDAO.regist(memberDTO);
 if(su == 1) {
 	out.println("<h3>등록 완료</h3>");
 	out.println("<br/><br/>");
-	out.println("<input type='button' value='목록' onclick=location.href='/memberJSP/member/writeForm.jsp'; />");
+	out.println("<input type='button' value='로그인 하기' onclick=location.href='/memberJSP/member/loginForm.jsp'; />");
 } else {
 	out.println("<h3>등록 실패</h3>");
 	out.println("<br/><br/>");

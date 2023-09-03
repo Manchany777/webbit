@@ -26,6 +26,7 @@ public class MemberDAO {
 		}
 	}
 	
+	// DB 접속
 	public void getConnection() {
 		try {
 			conn = DriverManager.getConnection(url, username, password);
@@ -34,6 +35,7 @@ public class MemberDAO {
 		}
 	}
 	
+	// 회원가입 - 아이디 중복체크
 	public boolean isExistId(String id) {
 		boolean exist = false;
 		String sql = "select * from member where id=?"; 
@@ -64,6 +66,7 @@ public class MemberDAO {
 		return exist;
 	}
 	
+	// 회원가입 - submit
 	public int regist(MemberDTO memberDTO) {
 		int su = 0;
 		String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
@@ -102,5 +105,35 @@ public class MemberDAO {
 		}
 		
 		return su;
+	}
+	
+	// 로그인
+	public boolean isExistMember(String id, String pwd) {
+		boolean exist = false;
+		String sql = "select * from member where id=? and pwd=?"; 
+		getConnection(); // 접속
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);  // 1 - ?(물음표 순서)
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery(); 	// 실행 - ResultSet 리턴  사이즈가 없기때문에 현재값이 없을때까지 계속 반복해야함
+			
+			if (rs.next()) {
+				exist =  true; 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}// finally-try-catch
+		}
+		return exist;
 	}
 }

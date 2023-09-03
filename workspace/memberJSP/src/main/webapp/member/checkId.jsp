@@ -4,6 +4,7 @@
 <%
 // 데이터
 String id = request.getParameter("id");
+String idChecked = request.getParameter("useCheckedId");
 
 // DB
 MemberDAO memberDAO = new MemberDAO();
@@ -34,7 +35,9 @@ response.setContentType("text/html;charset=UTF-8");
 
 <script type="text/javascript">
 function checkIdClose(id){
+	// 오프너(opener) - 팝업 창(자식창)에서 원래 있던 창(부모창)에 접근 하거나 서로 상호작용을 할 수 있는 객체
 	opener.document.getElementById("id").value = id; // 중복체크에서 사용하기로 한 아이디를 찍어주기
+	opener.document.getElementsByName("useCheckedId")[0].value = "idChecked";
 	window.close(); // 중복체크 창 닫기
 	opener.document.getElementById("pwd").focus(); // 중복체크 완료 후 비밀번호 창으로 포커스 맞추기
 }

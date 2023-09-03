@@ -24,29 +24,30 @@ h3 { text-align: center; }
     <tr>
         <th align="center" style="border: 2px solid gray;">이름</td>
         <td style="border: 2px solid gray;">
-        	<input type="text" name="name" id="name" maxlenght="10" placeholder="이름 입력" />
+        	<input type="text" name="name" id="name" maxlength="10" placeholder="이름 입력" />
         	<div id="nameDiv"></div>
         </td>
     </tr>
     <tr>
         <th align="center" style="border: 2px solid gray;">아이디</td>
         <td style="border: 2px solid gray;">
-        	<input type="text" name="id" id="id" maxlenght="10" placeholder="아이디 입력" style="width: 250px;" />
+        	<input type="text" name="id" id="id" maxlength="10" placeholder="아이디 입력" style="width: 250px;" />
         	<input type="button" value="중복체크" onclick="checkID()">
+        	<input type="hidden" name="useCheckedId" value="idUnchecked" />
         	<div id="idDiv"></div>
         </td>
     </tr>
     <tr>
         <th align="center" style="border: 2px solid gray;">비밀번호</td>
         <td style="border: 2px solid gray;">
-        	<input type="password" name="pwd" id="pwd" maxlenght="10" style="width: 300px;" />
+        	<input type="password" name="pwd" id="pwd" maxlength="10" style="width: 300px;" />
         	<div id="pwdDiv"></div>
         </td>
     </tr>
     <tr>
         <th align="center" style="border: 2px solid gray;">재확인</td>
         <td style="border: 2px solid gray;">
-        	<input type="password" id="repwd" maxlenght="10"  style="width: 300px;" />
+        	<input type="password" id="repwd" maxlength="10"  style="width: 300px;" />
         </td>
     </tr>
     <tr>
@@ -61,11 +62,11 @@ h3 { text-align: center; }
     <tr>
         <th align="center" style="border: 2px solid gray;">이메일</td>
         <td style="border: 2px solid gray;">
-        	<input type="email" name="email_1" id="email_1" maxlenght="10" style="width: 100px;" 
+        	<input type="email" name="email_1" id="email_1" maxlength="10" style="width: 100px;" 
         		pattern="^[a-zA-Z0-9]" />
         	 @ 
-        	<input type="email" name="email_2" id="email_2" maxlenght="10" style="width: 100px;" 
-        		parrern="[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"/>
+        	<input type="email" name="email_2" id="email_2" maxlength="10" style="width: 100px;" 
+        		pattern="[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"/>
         	<select name="email_3" id="emailSelect" style="width: 100px;"> 
        			<option value="">직접입력</option>
 				<option value="naver.com">naver.com</option>
@@ -120,15 +121,17 @@ function checkID(){
 	if(id == "")
 		document.getElementById("idDiv").innerText = "먼저 아이디를 입력하세요.";
 	else
-		window.open("checkId.jsp?id="+id, "checkId", "width=300 height=150 top=200 left=400 scrollbars=no toolbar=no menubar=no status=no location=no");  // 두번째 인자값 - 새창 무한증식 방지(이름자체는 아무거나 넣어도 무방)
+		window.open("checkId.jsp?id="+id+"&useCheckedId=idChecked", "checkId", "width=300 height=150 top=200 left=400 scrollbars=no toolbar=no menubar=no status=no location=no");  // 두번째 인자값 - 새창 무한증식 방지(이름자체는 아무거나 넣어도 무방)
 };    			 // "checkId.jsp?변수=값"   // 내가 적은 아이디가 중복체크 페이지로 값을 넘길 수 있도록
 </script>
 
 
 <!-- 스크립트도 위에서 아래로 흐르기때문에 순서를 지켜줘야 한다. 더 우선순위가 높은 것을 위에다 둬야 함 -->
+<!-- 유효성 검사 및 이메일 자동입력 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="http://localhost:8080/memberJSP/js/write.js"></script>
 
+<!-- 우편번호 검색 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="http://localhost:8080/memberJSP/js/post.js"></script>
 </body>
