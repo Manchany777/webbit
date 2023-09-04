@@ -108,8 +108,8 @@ public class MemberDAO {
 	}
 	
 	// 로그인
-	public boolean isExistMember(String id, String pwd) {
-		boolean exist = false;
+	public String login(String id, String pwd) {
+		String name = null;
 		String sql = "select * from member where id=? and pwd=?"; 
 		getConnection(); // 접속
 		
@@ -121,10 +121,11 @@ public class MemberDAO {
 			rs = pstmt.executeQuery(); 	// 실행 - ResultSet 리턴  사이즈가 없기때문에 현재값이 없을때까지 계속 반복해야함
 			
 			if (rs.next()) {
-				exist =  true; 
+				name = rs.getString("name");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			name = null;
 		} finally {
 			try {
 				if(rs != null) rs.close();
@@ -134,6 +135,6 @@ public class MemberDAO {
 				e.printStackTrace();
 			}// finally-try-catch
 		}
-		return exist;
+		return name;
 	}
 }

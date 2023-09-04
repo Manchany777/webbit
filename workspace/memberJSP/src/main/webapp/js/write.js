@@ -17,9 +17,6 @@ $(function(){
 		$('#idDiv').empty();
 		$('#pwdDiv').empty();
 		
-		
-		
-		
 		if($('#name').val()==''){
 			$('#nameDiv').text('이름을 입력하세요.');
 			$('#name').focus();
