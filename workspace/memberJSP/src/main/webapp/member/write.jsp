@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.dao.MemberDAO" import="member.dto.MemberDTO" import="java.util.Date" %>
+    pageEncoding="UTF-8" %>
+<%@ page import="member.bean.MemberDTO"  %>
+<%@ page import="member.dao.MemberDAO" %>
+<%@ page import="java.util.Date" %>
+	<%-- import도 이름순서대로 하는 게 좋다. --%>
 
 <%
 request.setCharacterEncoding("UTF-8"); // 한글패치
+// 주의) post 방식에선 request영역에 대해서 한글처리를 먼저해야 한글이 깨지지 않는다. (get 방식에선 필요x)
 
 // 데이터
 String name = request.getParameter("name");
@@ -49,11 +54,11 @@ int su = memberDAO.regist(memberDTO);
 <body>
 <%
 if(su == 1) {
-	out.println("<h3>등록 완료</h3>");
+	out.println("<h3>회원가입이 완료되었습니다.<br> 로그인 해주세요.</h3>");
 	out.println("<br/><br/>");
 	out.println("<input type='button' value='로그인 하기' onclick=location.href='/memberJSP/member/loginForm.jsp'; />");
 } else {
-	out.println("<h3>등록 실패</h3>");
+	out.println("<h3>회원 등록에 실패하였습니다.<br> 다시 시도해주세요.</h3>");
 	out.println("<br/><br/>");
 	out.println("<input type='button' value='뒤로가기' onclick='history.go(-1)'/>");
 }

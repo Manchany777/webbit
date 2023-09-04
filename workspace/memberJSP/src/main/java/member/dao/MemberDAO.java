@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import member.dto.MemberDTO;
+import member.bean.MemberDTO;
 
 public class MemberDAO {
 	private String driver = "oracle.jdbc.driver.OracleDriver";
