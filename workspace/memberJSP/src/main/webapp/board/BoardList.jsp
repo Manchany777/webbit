@@ -68,7 +68,9 @@ th, td {
 	<tr>
 		<td align="center"><%= boardDTO.getSeq() %></td>
 		<td class="boardSubject">
-			<a href="http://localhost:8080/memberJSP/member/boardView.jsp?seq=<%=boardDTO.getSeq()%>"><%= boardDTO.getSubject() %></a>
+			<a href="#" onclick="detailRead('<%= boardDTO.getSeq() %>'); return false;">
+				<%= boardDTO.getSubject() %>
+			</a>
 		</td>
 		<td align="center"><%= boardDTO.getName() %></td>
 		<td align="center"><%= new SimpleDateFormat("yyyy.MM.dd").format(boardDTO.getLogtime()) %></td>
@@ -83,13 +85,13 @@ th, td {
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
-function detailRead(){
-	if (sessionStorage.getId == null) {
+function detailRead(seq){
+	var id = sessionStorage.getItem("memId"); // 세션 값 가져오기
+	console.log(id);
+	if (id == null) {
 		alert("먼저 로그인하세요");
-		console.log(sessionStorage.getId);
-		return false;
 	} else {
-		return true;
+		window.location.href = "http://localhost:8080/memberJSP/member/boardView.jsp?seq=" + boardDTO.getSeq();
 	}
 }
 </script>
