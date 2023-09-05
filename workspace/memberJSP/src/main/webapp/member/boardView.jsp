@@ -39,11 +39,19 @@ table {
 	border-collapse: collapse;
 }
 th	{
-	width: 120px;
-	height: 50px;
+	width: 80px;
+	height: 30px;
+	background-color: #DACCCC;
 }
 td {
 	width: 200px;
+    padding: 5px 10px;
+}
+td#content {
+	height: 400px;
+	padding: 15px;
+	border-left: none;
+	vertical-align: top;
 }
 </style>
 </head>
@@ -64,7 +72,7 @@ td {
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td colspan="5" height="400px"><%= boardDTO.getContent() %></td>
+		<td id="content" colspan="5"><%= boardDTO.getContent() %></td>
 	
 	</tr>
 </table>
