@@ -2,7 +2,7 @@ $(function(){
 	// 선택한 이메일을 옆칸에 자동입력
 	$('#emailSelect').change(function(){
 		var email3 = $('#emailSelect').val();
-		$('#email_2').val(email3);
+		$('#email2').val(email3);
 		
 		if(email3 == '직접입력') {
 			$('#email2').val('');

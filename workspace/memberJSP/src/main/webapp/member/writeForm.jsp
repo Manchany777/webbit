@@ -73,12 +73,12 @@ h3 { text-align: center; }
     <tr>
         <th align="center" style="border: 2px solid gray;">이메일</td>
         <td style="border: 2px solid gray;">
-        	<input type="email" name="email_1" id="email_1" maxlength="10" style="width: 100px;" 
+        	<input type="email" name="email1" id="email1" maxlength="10" style="width: 100px;" 
         		pattern="^[a-zA-Z0-9]" />
         	 @ 
-        	<input type="email" name="email_2" id="email_2" maxlength="10" style="width: 100px;" 
+        	<input type="email" name="email2" id="email2" maxlength="10" style="width: 100px;" 
         		pattern="[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"/>
-        	<select name="email_3" id="emailSelect" style="width: 100px;"> 
+        	<select name="email3" id="emailSelect" style="width: 100px;"> 
        			<option value="">직접입력</option>
 				<option value="naver.com">naver.com</option>
 				<option value="google.com">google.com</option>
@@ -89,7 +89,7 @@ h3 { text-align: center; }
     <tr>
         <th align="center" style="border: 2px solid gray;">휴대폰</td>
         <td style="border: 2px solid gray;">
-        	<select name="phone_1" id="phone_1" style="width: 60px;"> 
+        	<select name="tel1" id="phone_1" style="width: 60px;"> 
         		<optgroup label="선택">
 					<option value="010" selected="selected">010</option>
 					<option value="011">011</option>
@@ -97,9 +97,9 @@ h3 { text-align: center; }
 				</optgroup>
 			</select>
 			 -
-			<input type="tel" name="phone_2" id="phone_2" maxlenght="10" style="width: 60px;"/>
+			<input type="tel" name="tel2" id="phone_2" maxlenght="10" style="width: 60px;"/>
 			 - 
-			<input type="tel" name="phone_3" id="phone_3" maxlenght="10" style="width: 60px;" />
+			<input type="tel" name="tel3" id="phone_3" maxlenght="10" style="width: 60px;" />
         </td>
     </tr>
     <tr>

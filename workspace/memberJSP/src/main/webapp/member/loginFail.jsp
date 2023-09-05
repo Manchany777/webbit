@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
-String login = (String)request.getAttribute("apple");
-// setAttribute는 객체이고, getAttribute는 String 즉, 형변환 필요 - (String)
-%>
 
 아이디 또는 비밀번호가 틀렸으니 다시 로그인하세요.
 <br/><br/>
