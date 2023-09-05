@@ -51,6 +51,6 @@ email1 = (String)session.getAttribute("memEmail");
 <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
 
 <br/><br/>
-<input type='button' value='회원가입' onclick=location.href='/memberJSP/member/writeForm.jsp' />
+<input type='button' value='글목록 바로가기' onclick=location.href='/memberJSP/board/BoardList.jsp?pg=1' />
 </body>
 </html>
