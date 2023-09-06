@@ -167,7 +167,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql); // select문에 ?(물음표)가 없으므로 바로 sql 실행
 			rs = pstmt.executeQuery(); // select하면 ResultSet로 받아오는건 불변의 약속
 			
-			rs.next(); // 각 행에 초점 맞추기
+			rs.next(); // 각 행에 이어서 초점 맞추기
 			totalA = rs.getInt(1); // 1번 컬럼의 값(=개수 즉, count(*)를 꺼내와라
 			
 		} catch (SQLException e) {
