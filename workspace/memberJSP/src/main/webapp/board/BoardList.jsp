@@ -80,6 +80,7 @@ th, td {
 	color: black;
 	cursor: pointer;
 }
+
 </style>
 </head>
 <body>
@@ -95,8 +96,8 @@ th, td {
 	<tr>
 		<td align="center"><%= boardDTO.getSeq() %></td>
 		<td class="boardSubject">
-			<a href="<%= (id != null) ? "http://localhost:8080/memberJSP/member/boardView.jsp?seq=" + boardDTO.getSeq() : "return false;" %>" 
-                onclick="<%= (id != null) ? "" : "alert(\'로그인 해주세요\'); return false;" %>">
+			<a href="<%= (id != null) ? "http://localhost:8080/memberJSP/member/boardView.jsp?seq=" + boardDTO.getSeq() + "&pg=" + pg : "return false;" %>" 
+                onclick="<%= (id != null) ? "" : "alert('로그인 해주세요'); return false;" %>">
 			<%-- <a href="http://localhost:8080/memberJSP/member/boardView.jsp?seq=<%=boardDTO.getSeq()%>" >  --%>
 				<%= boardDTO.getSubject() %>
 			</a>
@@ -112,16 +113,14 @@ th, td {
 	onclick="location.href='../index.jsp'" style="cursor: pointer;" width="50" height="50">
 <br/>
 
-<div style="border: 1px blue solid; width: 900px; text-align:center;"><%=boardPaging.getPagingHTML() %></div>
+<div style="width: 900px; text-align:center;"><%=boardPaging.getPagingHTML() %></div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
 function boardPaging(pg) {
 	// BoardPaging에서 호출할 함수를 만듦
-	alert(pg);
 	location.href = "BoardList.jsp?pg=" + pg;
 }
 </script>
-
 </body>
 </html>

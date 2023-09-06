@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="board.bean.BoardDTO"  %>
+<%@ page import="board.bean.BoardPaging" %>
 <%@ page import="board.dao.BoardDAO" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List" %>
@@ -21,12 +22,16 @@ email = (String)session.getAttribute("memEmail");
 
 // 데이터
 int seq = Integer.parseInt(request.getParameter("seq"));
-
+int pg = Integer.parseInt(request.getParameter("pg"));
 		
 //DB객체 생성
 BoardDAO boardDAO = new BoardDAO();
-BoardDTO boardDTO = boardDAO.boardDetail(seq);
+BoardDTO boardDTO = boardDAO.boardDetail(seq); // 글 내용은 한사람 거니까 BoardDTO 담아오면 된다.
 
+// 페이징 처리 
+/* BoardPaging boardPaging = new BoardPaging(); // 하나씩 꺼내오기
+boardPaging.setCurrentPage(pg);
+boardPaging.makePagingHTML();  */
 %>
 
 <!DOCTYPE html>
@@ -37,6 +42,9 @@ BoardDTO boardDTO = boardDAO.boardDetail(seq);
 <style>
 table {
 	border-collapse: collapse;
+}
+th, td {
+
 }
 th	{
 	width: 80px;
@@ -77,6 +85,6 @@ td#content {
 	</tr>
 </table>
 <br/>
-<input type="button" value="목록" onclick="javascript:location.href='../index.jsp'" />
+<input type="button" value="목록" onclick="javascript:location.href='../board/BoardList.jsp?pg=<%=pg %>'" />
 </body>
 </html>

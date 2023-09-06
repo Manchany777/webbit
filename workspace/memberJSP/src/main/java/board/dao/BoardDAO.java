@@ -115,6 +115,7 @@ public class BoardDAO {
 		return list;
 	}
 	
+	// 게시글 조회
 	public BoardDTO boardDetail(int seq) {
 		BoardDTO boardDTO = null;
 		String sql = "select * from board where seq = ?";
@@ -126,7 +127,7 @@ public class BoardDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) { // 한사람것만 불러오니까 while 쓸 필요 x
 				boardDTO = new BoardDTO();
 				boardDTO.setSeq(rs.getInt("seq"));
 				boardDTO.setId(rs.getString("id"));
