@@ -35,6 +35,12 @@
 	${ 11-i }&emsp;
 </c:forEach>
 <%-- step은 0이나 -1이 불가능 --%>
-<br>
+<br><br>
+
+
+<h3>*** forToken *** </h3>
+<c:forTokens var="car" items="소나타, 아우디, 링컨, 페라리, 벤츠" delims=",">
+	${car }<br>
+</c:forTokens>
 </body>
 </html>
