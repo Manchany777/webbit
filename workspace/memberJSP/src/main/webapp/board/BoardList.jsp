@@ -24,6 +24,10 @@ int pg = Integer.parseInt(request.getParameter("pg"));
 // 1페이지당 5개씩
 int endNum = pg*5;
 int startNum = endNum-4;
+
+// 페이징 처리
+int totalA = BoardDAO.getTotalA(); 
+// 총 글수
 		
 		
 //DB객체 생성
