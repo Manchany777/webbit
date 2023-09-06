@@ -25,7 +25,6 @@
 		<c:if test="${ param.color eq 'blue' }">파랑</c:if>
 		<c:if test="${ param.color eq 'magenta' }">보라</c:if>
 		<c:if test="${ param.color == 'cyan' }">하늘</c:if>
-		== 대신 eq 사용 가능
 	</li><br><br>
 	
 	<li>색 깔 :

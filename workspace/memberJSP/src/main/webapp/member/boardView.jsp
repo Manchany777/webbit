@@ -80,8 +80,7 @@ td#content {
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td id="content" colspan="5"><%= boardDTO.getContent() %></td>
-	
+		<td id="content" colspan="5"><%= boardDTO.getContent().replaceAll("\\s+", " ").replaceAll("\\n+", "<br>") %></td>
 	</tr>
 </table>
 <br/>
