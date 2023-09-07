@@ -122,7 +122,7 @@ function checkID(){
 	if(id == "")
 		document.getElementById("idDiv").innerText = "먼저 아이디를 입력하세요.";
 	else
-		window.open("checkId.jsp?id="+id+"&useCheckedId=idChecked", "checkId", "width=300 height=150 top=200 left=400 scrollbars=no toolbar=no menubar=no status=no location=no");  // 두번째 인자값 - 새창 무한증식 방지(이름자체는 아무거나 넣어도 무방)
+		window.open("checkId.do?id="+id+"&useCheckedId=idChecked", "checkId", "width=300 height=150 top=200 left=400 scrollbars=no toolbar=no menubar=no status=no location=no");  // 두번째 인자값 - 새창 무한증식 방지(이름자체는 아무거나 넣어도 무방)
 
 };    			 // "checkId.jsp?변수=값"   // 내가 적은 아이디가 중복체크 페이지로 값을 넘길 수 있도록
 </script>

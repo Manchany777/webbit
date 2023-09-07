@@ -11,7 +11,7 @@
 <body>
 
 <h3>${ sessionScope.memName }님 환영합니다.</h3>
-이메일 주소 : ${sessionScope.memEmail} <br/><br/>
+이메일 주소 : ${ sessionScope.memEmail } <br/><br/>
 <input type="button" value="로그아웃" onclick="location.href='http://localhost:8080/memberMVC/member/logout.do'">
 
 <br/><br/>
