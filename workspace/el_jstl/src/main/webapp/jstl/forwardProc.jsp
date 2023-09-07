@@ -6,7 +6,7 @@
 
 <% 
 // 자바 역할
-List<String> list = new ArrayList<String>(); // 배열에 담음
+List<String> list = new ArrayList<String>(); // 문자열을 배열에 담음
 list.add("호랑이");
 list.add("사자");
 list.add("기린");
@@ -20,7 +20,7 @@ PersonDTO aa = new PersonDTO("홍길동", 25);
 PersonDTO bb = new PersonDTO("라이언", 23);
 PersonDTO cc = new PersonDTO("프로도", 30);
 
-List<PersonDTO> list2 = new ArrayList<PersonDTO>(); // 단순 배열이 아닌 객체에 담음
+List<PersonDTO> list2 = new ArrayList<PersonDTO>(); // 객체를 배열에 담음
 list2.add(aa);
 list2.add(bb);
 list2.add(cc);

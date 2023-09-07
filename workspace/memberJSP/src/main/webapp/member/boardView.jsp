@@ -29,9 +29,11 @@ BoardDAO boardDAO = new BoardDAO();
 BoardDTO boardDTO = boardDAO.boardDetail(seq); // 글 내용은 한사람 거니까 BoardDTO 담아오면 된다.
 
 // 페이징 처리 
-/* BoardPaging boardPaging = new BoardPaging(); // 하나씩 꺼내오기
+BoardPaging boardPaging = new BoardPaging(); // 하나씩 꺼내오기
 boardPaging.setCurrentPage(pg);
-boardPaging.makePagingHTML();  */
+// 여기서는 BoardPaging의 currentPage변수에만 값을 담아오는 것이기때문에 makePagingHTML(); 메소드는 쓰이지 않는다.
+// makePagingHTML();메소드는 페이징처리를 위해 구현한 메소드이기때문에 페이지값만 담아올 때에는 쓸 이유가 없는 것이다. 따라서
+// boardPaging.makePagingHTML(); 메소드는 여기서 실행시키면 안 된다. (에러뜸)
 %>
 
 <!DOCTYPE html>
@@ -84,6 +86,6 @@ td#content {
 	</tr>
 </table>
 <br/>
-<input type="button" value="목록" onclick="javascript:location.href='../board/BoardList.jsp?pg=<%=pg %>'" />
+<input type="button" value="목록" onclick="javascript:location.href='../board/BoardList.jsp?pg=<%= boardPaging.getCurrentPage() %>'" />
 </body>
 </html>
