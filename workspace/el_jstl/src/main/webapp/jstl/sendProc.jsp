@@ -24,7 +24,7 @@ list.add("여우");
 request.setAttribute("list", list);
 // so, 객체를 주소값으로 실어보내기 위해 request객체에 실어보내자 한것
 
-// 그런데 이렇게 하면 또 다른 문제가 생긴다.
+// 그런데 여기서 또 다른 문제가 생긴다.
 // 바로 데이터 공유가 안된다는 것이다.
 // 이 넘기는 값은 sendProc의 것이지 sendResult의 것이 아니다.
 

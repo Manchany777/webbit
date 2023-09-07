@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor // 모든 인자가 포함된 생성자를 만드는 롬복 어노테이션
 @NoArgsConstructor // 기본 생성자를 만드는 롬복 어노테이션
 @RequiredArgsConstructor // 내가 원하는 인자값만 생성자로 만드는 롬복 어노테이션
+						 // @NonNull 어노테이션을 쓰거나, 필드명에 final을 붙임으로써 사용가능
 @Getter
 @Setter
 public class PersonDTO {
