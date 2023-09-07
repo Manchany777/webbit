@@ -20,7 +20,7 @@ h3 {
 </style>
 </head>
 <body>
-<form id="loginForm" method="post" action="">
+<form id="loginForm" method="post" action="/memberMVC/member/login.do">
 <h3>로그인 페이지</h3>
 <table border="1" cellpadding="5" cellspacing="0" align="center" >
     <tr>
