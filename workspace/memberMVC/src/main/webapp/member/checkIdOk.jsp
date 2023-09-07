@@ -10,7 +10,7 @@
 <body>
 <form action="checkId.jsp">
 	<h3> ${ param.id }는(은) 사용 가능합니다. </h3>
-	<input type="button" value="사용하기" onclick="checkIdClose('${param.id}')"> <!-- 여기는 절대 submit 쓰면 안된다. 위의 checkId.jsp로 넘어가버림  -->
+	<input type="button" value="사용하기" onclick="checkIdClose('${ param.id }')"> <!-- 여기는 절대 submit 쓰면 안된다. 위의 checkId.jsp로 넘어가버림  -->
 	<br>
 </form>
 
