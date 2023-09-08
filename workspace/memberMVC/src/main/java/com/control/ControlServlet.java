@@ -2,6 +2,7 @@ package com.control;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -69,7 +70,8 @@ public class ControlServlet extends HttpServlet {
 	         
 	         try {
 	            Class<?> classType = Class.forName(className);
-	            Object ob = classType.newInstance();
+	            //Object ob = classType.newInstance(); // => deprecated
+	            Object ob = classType.getConstructor().newInstance();
 	            
 	            System.out.println("ob = "+ob);
 	            
@@ -86,7 +88,13 @@ public class ControlServlet extends HttpServlet {
 	            e.printStackTrace();
 	         } catch (IllegalArgumentException e) {
 	            e.printStackTrace();
-	         } 
+	         } catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} 
 	         
 	         System.out.println();
 	      }//while
@@ -102,9 +110,7 @@ public class ControlServlet extends HttpServlet {
 	}
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//데이터
-		
-		//DB
+		System.out.println("==========내가 요청한 부분==========");
 		
 		// 한글처리 - post방식일때만 한글이 깨지므로 post방식에서만 처리하도록 설정 
 		// (여기서의 getMethod는 함수가 아니라 jsp에서 form 태그의 method를 말한다 주의)
@@ -126,7 +132,7 @@ public class ControlServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//forward
+		//forward // DispatcherServlet - 스프링 내장 (우리 눈에는 보이지 x)
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);//가져온 상대번지를 가지고
 		dispatcher.forward(request, response);//포워드(제어권 넘기기) 시킴
 	}

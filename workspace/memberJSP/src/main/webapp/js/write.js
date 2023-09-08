@@ -34,7 +34,7 @@ $(function(){
     	} else {
 			var checkedId = $('input[name="useCheckedId"]').val();
 			
-			if(checkedId != "idChecked") {
+			if($('input[name="id"]').val() != $('input[name="useCheckedId"]').val()) {
 				// 중복 체크 상태 초기화
 				alert("아이디 중복체크를 다시 수행해주세요.");
 				$('#id').focus();

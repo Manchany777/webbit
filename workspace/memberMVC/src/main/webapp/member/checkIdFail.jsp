@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="paramForm" action="checkId.do">
+<form name="paramForm" action="/memberMVC/member/checkId.do"> <!-- writeForm.jsp의 checkId() -->
 	<h3> ${ param.id }는(은) 이미 사용중입니다. </h3>
 	아이디 <input type="text" name="id" id="id" placeholder="아이디 입력" style="width: 150px;" />
 	<input type="submit" value="중복체크"> 
