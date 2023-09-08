@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="board.dao.BoardDAO" %>
     
-<%
-// 데이터
-String id = request.getParameter("id");
-
-// DB
-BoardDAO boardDAO = new BoardDAO();
-
-// 응답
-response.setContentType("text/html;charset=UTF-8");
-%>
 <!DOCTYPE html>
 <html>
 <head>

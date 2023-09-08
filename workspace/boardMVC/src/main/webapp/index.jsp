@@ -17,11 +17,11 @@ id = (String)session.getAttribute("memId");
 
 <% if(id == null) {%>
 	<!-- memId 세션이 없으면 -->
-	<h3><a href="http://localhost:8080/memberJSP/member/writeForm.jsp">회원가입</a></h3>
-	<h3><a href="/memberJSP/member/loginForm.jsp">로그인</a></h3>
+	<h3><a href="http://localhost:8080/memberMVC/member/writeForm.do">회원가입</a></h3>
+	<h3><a href="http://localhost:8080/boardMVC/member/loginForm.do">로그인</a></h3>
 <%}else{ %>
 	<!-- memId 세션이 있으면 -->
-	<h3><a href="./member/logout.jsp">로그아웃</a></h3>
+	<h3><a href="http://localhost:8080/boardMVC/member/logout.do">로그아웃</a></h3>
 	<h3><a href="./board/boardWriteForm.jsp">글쓰기</a></h3>
 <%} %>
 

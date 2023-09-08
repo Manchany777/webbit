@@ -124,6 +124,7 @@ public class ControlServlet extends HttpServlet {
 		System.out.println("category = "+category); // 결과가 /member/writeForm.do 나온다.
 		
 		CommandProcess com = (CommandProcess)map.get(category); //member.service.WriteFormService
+		System.out.println(com);
 		String view = null; 	// => key값 비교후 Map안에 들어있는 내용과 비교해서 똑같은 자바 파일을 얻어온다. 
 		
 		try {
