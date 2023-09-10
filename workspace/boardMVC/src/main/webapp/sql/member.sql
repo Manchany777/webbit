@@ -12,3 +12,11 @@ zipcode varchar2(10),
 addr1 varchar2(100),
 addr2 varchar2(100),
 logtime date);
+
+-- 보드리스트
+select * from board order by seq desc;
+
+-- 페이징 처리
+select * from 
+    (select rownum rn, tt.* from (select * from board order by seq desc) tt order by seq desc)  
+where rn >=1 and rn <=5;

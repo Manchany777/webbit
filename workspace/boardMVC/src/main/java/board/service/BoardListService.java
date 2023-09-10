@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -15,16 +16,6 @@ public class BoardListService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		//세션에 담기
-		
-		String id = null;
-		String name = null;
-		String email = null;
-		
-		id = (String)session.getAttribute("memId");
-		name = (String)session.getAttribute("memName");
-		email = (String)session.getAttribute("memEmail");
-
 		// 데이터 (for 페이징) - 파라미터를 통해서(=목록에서) 접근해야 하기때문에 이 파일을 바로 실행하면 에러 발생
 		int pg = Integer.parseInt(request.getParameter("pg"));
 
@@ -48,6 +39,16 @@ public class BoardListService implements CommandProcess {
 
 		boardPaging.makePagingHTML(); // 메소드 호출
 		
+		// 세션(에 담기)
+		HttpSession session = request.getSession(); // 세션생성
+		String id = (String)session.getAttribute("memId");
+		String name = (String)session.getAttribute("memName");
+		String email = (String)session.getAttribute("memEmail");
+		
+		// 응답
+		request.setAttribute("pg", pg);
+		request.setAttribute("list", list);
+		request.setAttribute("boardPaging", boardPaging);
 		
 		return "/board/BoardList.jsp";
 	}

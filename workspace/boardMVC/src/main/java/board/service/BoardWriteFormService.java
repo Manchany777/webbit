@@ -19,7 +19,6 @@ public class BoardWriteFormService implements CommandProcess {
 
 		// 응답
 		response.setContentType("text/html;charset=UTF-8");
-		System.out.println("dddd");
 		return "/board/boardWriteForm.jsp";
 	}
 

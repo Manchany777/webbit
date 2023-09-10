@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -19,16 +20,12 @@ public class BoardWriteService implements CommandProcess {
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 
-		// 응답
-
-		// 세션에 담기
-		String id = null;
-		String name = null;
-		String email = null;
+		// 세션에 담기 (내장객체를 가지고 있는 JSP와 다르게 세션을 따로 불러들여야 한다.)
+		HttpSession session = request.getSession();
 		
-		id = (String)session.getAttribute("memId");
-		name = (String)session.getAttribute("memName");
-		email = (String)session.getAttribute("memEmail");
+		String id = (String)session.getAttribute("memId");
+		String name = (String)session.getAttribute("memName");
+		String email = (String)session.getAttribute("memEmail");
 
 		// 세션에 담은 데이터를 한 번에 실어가기 위해
 		Map<String, String> map = new HashMap<String, String>();
@@ -43,7 +40,7 @@ public class BoardWriteService implements CommandProcess {
 		boardDAO.boardWrite(map);  // DB에 Map들고 insert(저장)
 
 		
-		return "/board/boardWriteForm.jsp";
+		return "/board/boardWrite.jsp";
 	}
 
 }

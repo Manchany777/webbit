@@ -19,7 +19,7 @@ public class LoginOkService implements CommandProcess {
 		String id = (String)session.getAttribute("memId");
 		String email1 = (String)session.getAttribute("memEmail");
 
-		return null;
+		return "/member/loginOk.jsp";
 	}
 
 }

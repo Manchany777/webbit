@@ -18,6 +18,6 @@ public class LogoutService implements CommandProcess {
 		
 		session.invalidate(); // 모든 세션 무효화
 		
-		return "/member/logout.do";
+		return "/member/logout.jsp";
 	}
 }

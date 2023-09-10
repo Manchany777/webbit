@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context docBase="boardMVC" 
-		 path="boardMVC" 
+		 path="/boardMVC" 
 		 reloadable="true" 
 		 source="org.eclipse.jst.jee.server:boardMVC">
 	<Resource name="jdbc/oracle"
