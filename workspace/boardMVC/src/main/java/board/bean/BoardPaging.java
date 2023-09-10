@@ -27,7 +27,8 @@ public class BoardPaging {
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;  // 시작 페이지 [1]
 		int endPage = startPage + pageBlock -1; // 끝 페이지 [3]
 		
-		if(endPage > totalP) endPage = totalP; // ???
+		if(endPage > totalP) endPage = totalP; // 마지막 페이징 계산
+		// endPage가 totalP를 초과하는 경우, 페이징 버튼이 총 페이지 수를 초과하지 않도록 보정하는 역할
 		
 		// 페이지 출력 로직
 		if(startPage != 1) // [이전]

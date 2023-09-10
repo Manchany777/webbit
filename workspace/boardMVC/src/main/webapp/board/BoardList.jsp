@@ -37,7 +37,10 @@ th, td {
 	color: black;
 	cursor: pointer;
 }
-
+.subjectA:Link { color:black; text-decoration: none; }
+.subjectA:visited { color:black; text-decoration: none; }
+.subjectA:hover { color:green; text-decoration: underline; }
+.subjectA:active { color:black; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -54,7 +57,7 @@ th, td {
 	<tr>
 		<td align="center">	${ boardDTO.seq }</td>
 		<td class="boardSubject"> 
-			<a class="subjectA" href="#javascript:void(0)" onclick="isLogin('${ boardDTO.id }',${ boardDTO.subject },${ pg })">
+			<a class="subjectA" href="javascript:void(0)" onclick="isLogin('${ boardDTO.id }',${ boardDTO.seq },${ pg })">
 				${ boardDTO.subject }
 			</a>
 		</td>
@@ -80,9 +83,12 @@ function boardPaging(pg) {
 }
 
 function isLogin(id, seq, pg){
-   if(id == 'null'){ alert("먼저 로그인하세요");
-	   location.href = "boardView.do?seq="+seq+ "&pg="+pg;
-   } else location.href = "boardView.do?seq="+seq+ "&pg="+pg;
+	if(id == "null"){ 
+	 alert("먼저 로그인하세요");
+	 return false;
+	} else {
+	 location.href = "boardView.do?seq="+seq+"&pg="+pg;
+	}
 }
 </script>
 </body>

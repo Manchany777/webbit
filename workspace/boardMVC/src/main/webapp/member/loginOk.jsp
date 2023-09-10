@@ -17,6 +17,6 @@
 <input type="button" value="로그아웃" onclick="location.href='logout.do'">
 <input type='button' value='글쓰기' onclick=location.href='/boardMVC/board/boardWriteForm.do' />
 <br/><br/>
-<input type='button' value='글목록 바로가기' onclick=location.href='/boardMVC/board/BoardList.jsp?pg=1' />
+<input type='button' value='글목록 바로가기' onclick=location.href='/boardMVC/board/BoardList.do?pg=1' />
 </body>
 </html>

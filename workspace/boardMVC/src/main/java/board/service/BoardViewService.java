@@ -1,7 +1,5 @@
 package board.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,35 +10,28 @@ import board.bean.BoardDTO;
 import board.bean.BoardPaging;
 import board.dao.BoardDAO;
 
-public class BoardListService implements CommandProcess {
+public class BoardViewService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		// 데이터 (for 페이징) - 파라미터를 통해서(=목록에서) 접근해야 하기때문에 이 파일을 바로 실행하면 에러 발생
+	
+		// 데이터
+		int seq = Integer.parseInt(request.getParameter("seq"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
-
-		// 1페이지당 5개씩 글이 오도록 처리 (for 페이징 처리)
-		int endNum = pg*5;
-		int startNum = endNum-4;
-
 				
 		//DB객체 생성
 		BoardDAO boardDAO = new BoardDAO();
-		List<BoardDTO> list = boardDAO.getBoardList(startNum, endNum);
+		BoardDTO boardDTO = boardDAO.boardDetail(seq); // 글 내용은 한사람 거니까 BoardDTO 담아오면 된다.
 
-		// 페이징 처리
-		int totalA = boardDAO.getTotalA(); // 총 글수
-
+		// 페이징 처리 
 		BoardPaging boardPaging = new BoardPaging(); // 하나씩 꺼내오기
 		boardPaging.setCurrentPage(pg);
-		boardPaging.setPageBlock(3);
-		boardPaging.setPageSize(5);
-		boardPaging.setTotalA(totalA);
-
-		boardPaging.makePagingHTML(); // 메소드 호출
+		// boardView 페이지에서는 BoardPaging의 currentPage변수에만 값을 담아오는 것이기때문에 makePagingHTML(); 메소드는 쓰이지 않는다.
+		// makePagingHTML();메소드는 페이징처리를 위해 구현한 메소드이기때문에 페이지값만 담아올 때에는 쓸 이유가 없는 것이다. 따라서
+		// boardPaging.makePagingHTML(); 메소드는 여기서 실행시키면 안 된다. (에러뜸)
 		
-		// 세션(에 담기)
-		HttpSession session = request.getSession(); // 세션생성
+		//세션에 담기
+		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");
 		String name = (String)session.getAttribute("memName");
 		String email = (String)session.getAttribute("memEmail");
@@ -50,11 +41,11 @@ public class BoardListService implements CommandProcess {
 		System.out.println("Email: " + email);
 		
 		// 응답
+		request.setAttribute("boardDTO", boardDTO);  // => 이거 가져오니까 된다??
 		request.setAttribute("pg", pg);
-		request.setAttribute("list", list);
 		request.setAttribute("boardPaging", boardPaging);
 		
-		return "/board/BoardList.jsp";
+		return "/board/boardView.jsp";
 	}
 
 }

@@ -37,6 +37,6 @@ id = (String)session.getAttribute("memId");
 <%} %> --%>
 
 <!-- 카페에서 세션유무(로그인유무) 상관없이 목록은 볼 수 있는 것처럼 -->
-<h3><a href="/boardMVC/board/BoardList.jsp?pg=1">목록</a></h3>
+<h3><a href="/boardMVC/board/BoardList.do?pg=1">목록</a></h3>
 </body>
 </html>
