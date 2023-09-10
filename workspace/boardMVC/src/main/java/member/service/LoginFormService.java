@@ -13,4 +13,3 @@ public class LoginFormService implements CommandProcess {
 		return "/member/loginForm.jsp";
 	}
 }
-
