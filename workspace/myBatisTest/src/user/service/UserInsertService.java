@@ -9,6 +9,7 @@ public class UserInsertService implements UserService {
 
 	@Override
 	public void execute() {
+		System.out.println();
 		System.out.println("insert 메뉴입니다.");
 		System.out.println();
 		

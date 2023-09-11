@@ -76,4 +76,19 @@ public class UserDAO {
 		sqlSession.commit(); // Lock - commit 필요
 		sqlSession.close();
 	}
+
+
+	public List<UserDTO> search(String name, String id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(); // 생성
+		List<UserDTO> list = null;
+		if (id == null ) {
+			list = sqlSession.selectList("userSQL.search", name);
+		} else if (name == null) {
+			list = sqlSession.selectList("userSQL.search", id);
+		}
+		
+		sqlSession.close();
+		
+		return list;
+	}
 }

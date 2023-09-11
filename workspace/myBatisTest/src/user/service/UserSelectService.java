@@ -9,6 +9,7 @@ public class UserSelectService implements UserService {
 
 	@Override
 	public void execute() {
+		System.out.println();
 		System.out.println("select 메뉴입니다.");
 		System.out.println();
 		

@@ -10,6 +10,7 @@ public class UserDeleteService implements UserService {
 	
 	@Override
 	public void execute() {
+		System.out.println();
 		System.out.println("delete 메뉴입니다.");
 		System.out.println();
 		

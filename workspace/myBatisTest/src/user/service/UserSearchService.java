@@ -1,11 +1,62 @@
 package user.service;
 
-public class UserSearchService implements UserService {
+import java.util.List;
+import java.util.Scanner;
 
+import user.bean.UserDTO;
+import user.dao.UserDAO;
+
+public class UserSearchService implements UserService {
+	Scanner scan = new Scanner(System.in);
+	
 	@Override
 	public void execute() {
+		System.out.println();
 		System.out.println("search 메뉴입니다.");
 		System.out.println();
+		
+		int num;
+
+		System.out.println();
+		System.out.println("==============");
+		System.out.println(" 1. 이름 검색");
+		System.out.println(" 2. 아이디 검색");
+		System.out.println(" 3. 나가기");
+		System.out.println("==============\"");
+		System.out.print(" 번호 : ");
+		num = scan.nextInt();
+		
+		UserDAO userDAO = new UserDAO(); // 해당 유저가 진짜 있는지 확인
+
+		
+		if(num == 1) {
+			// 데이터
+			System.out.println();
+			System.out.print("검색 할 이름 입력 : ");
+			String name = scan.next();
+			//String id = scan.next();
+			
+			List<UserDTO> list = userDAO.search(name, null);
+			
+			for(UserDTO userDTO : list) {
+				System.out.println(userDTO.getName() + "\t" + userDTO.getId() + "\t" + userDTO.getPwd());
+			}
+			System.out.println();
+			execute();
+		} else if(num == 2) {
+			// 데이터
+			System.out.println();
+			System.out.print("검색 할 아이디 입력 : ");
+			String id = scan.next();
+			
+			List<UserDTO> list = userDAO.search(null, id);
+			
+			for(UserDTO userDTO : list) {
+				System.out.println(userDTO.getName() + "\t" + userDTO.getId() + "\t" + userDTO.getPwd());
+			}
+			System.out.println();
+			execute();
+		} else if(num == 3) return;
 
 	}
 }

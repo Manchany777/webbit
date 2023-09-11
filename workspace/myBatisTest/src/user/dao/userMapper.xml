@@ -29,4 +29,8 @@
  	</delete>
  	
  	<!-- 검색 -->
+ 	<select id="search" parameterType="java.lang.String" resultType="user.bean.UserDTO">
+ 			select * from usertable where name=#{name} or id like '%'||#{id}||'%'
+			<!-- select * from usertable where name=#{name} or id like '%${id}%' --> <!-- 이렇게 하는 것도 가능 -->
+ 	</select>
  </mapper>
