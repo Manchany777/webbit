@@ -3,7 +3,30 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="userSQL">
+ 
+ 	<!-- 등록 -->
  	<insert id="write" parameterType="user.bean.UserDTO">
  		insert into usertable values(#{name}, #{id}, #{pwd})
  	</insert>
+ 	
+ 	<!-- 출력 -->
+ 	<select id="getUserList" resultType="user.bean.UserDTO">
+ 		select * from usertable
+ 	</select>
+ 	
+ 	<!-- 수정 --> 	<!-- 넘겨받은 인자값인 id의 자료형이 String 타입이므로 java.Lang.String 즉, 자료형을 써줘야 한다.-->
+ 	<select id="getUser" parameterType="java.lang.String" resultType="user.bean.UserDTO">
+ 		select * from usertable where id=#{id}
+ 	</select>
+ 	<update id="update" parameterType="user.bean.UserDTO">
+ 		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
+ 		<!-- name=#{name} and pwd=#{pwd} (x) => 'and' 쓰면 안 됨 -->
+ 	</update>
+ 	
+ 	<!-- 삭제 (oracle은 'from' 안 써도 됨. mySQL은 필수) -->
+ 	<delete id="delete" parameterType="user.bean.UserDTO">
+ 		delete from usertable where id=#{id}
+ 	</delete>
+ 	
+ 	<!-- 검색 -->
  </mapper>

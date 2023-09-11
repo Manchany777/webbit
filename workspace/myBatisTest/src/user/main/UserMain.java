@@ -26,7 +26,7 @@ public class UserMain {
 			System.out.println(" 5. 검색");
 			System.out.println(" 6. 끝");
 			System.out.println("************");
-			System.out.println(" 번호 : ");
+			System.out.print(" 번호 : ");
 			num = scan.nextInt();
 			
 			if(num == 1) insert();
