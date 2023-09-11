@@ -57,7 +57,7 @@ th, td {
 	<tr>
 		<td align="center">	${ boardDTO.seq }</td>
 		<td class="boardSubject"> 
-			<a class="subjectA" href="javascript:void(0)" onclick="isLogin('${ boardDTO.id }',${ boardDTO.seq },${ pg })">
+			<a class="subjectA" href="javascript:void(0)" onclick="isLogin('${ sessionScope.memId }',${ boardDTO.seq },${ pg })">
 				${ boardDTO.subject }
 			</a>
 		</td>
@@ -83,12 +83,12 @@ function boardPaging(pg) {
 }
 
 function isLogin(id, seq, pg){
-	if(id == "null"){ 
-	 alert("먼저 로그인하세요");
-	 return false;
+	if(id == ""){ 
+		alert("먼저 로그인하세요");
+		return false;
 	} else {
-	 location.href = "boardView.do?seq="+seq+"&pg="+pg;
-	}
+		location.href = "boardView.do?seq="+seq+"&pg="+pg;
+	} 
 }
 </script>
 </body>
