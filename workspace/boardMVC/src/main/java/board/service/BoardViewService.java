@@ -23,6 +23,7 @@ public class BoardViewService implements CommandProcess {
 		BoardDAO boardDAO = new BoardDAO();
 		BoardDTO boardDTO = boardDAO.boardDetail(seq); // 글 내용은 한사람 거니까 BoardDTO 담아오면 된다.
 
+		/*
 		// 페이징 처리 
 		BoardPaging boardPaging = new BoardPaging(); // 하나씩 꺼내오기
 		boardPaging.setCurrentPage(pg);
@@ -39,11 +40,12 @@ public class BoardViewService implements CommandProcess {
 		System.out.println("ID: " + id);
 		System.out.println("Name: " + name);
 		System.out.println("Email: " + email);
+		*/
 		
 		// 응답
 		request.setAttribute("boardDTO", boardDTO);  // => 이거 가져오니까 된다??
-		request.setAttribute("pg", pg);
-		request.setAttribute("boardPaging", boardPaging);
+		request.setAttribute("pg", pg); // 목록 눌렀을 때 제자리고 가게하기 위해
+		//request.setAttribute("boardPaging", boardPaging);
 		
 		return "/board/boardView.jsp";
 	}
