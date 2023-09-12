@@ -10,14 +10,14 @@
  	</resultMap>  -->
  	
  	<!-- 게시판 등록 --> <!-- DTO값 전달하니까 member(alias 적용) -->
- 	<!-- parameterType="board" 로 해도 된다 why? -->
- 	<insert id="boardWrite" parameterType="java.util.Map">
+ 	<!-- parameterType="board" 로 해도 된다 why? 걍 간단한 건 자체로직으로 변환시켜주기도 한다. but 복잡한건 에러뜨니 정확한 파라미터타입을 넘기는 습관을 갖자 -->
+ 	<insert id="boardWrite" parameterType="board">
  		insert into board(seq, id, name, email, subject, content, ref) 
  		values(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.currval)
  	</insert>
  	
  	<!-- 게시판 목록 -->
- 	<!-- 내가 DAO에서 넘긴건 list가 아니라 Map이다 why? -->
+ 	<!-- 내가 DAO에서 넘긴건 list가 아니라 Map이다 why? 애초에 list는 여기에 넘겨올 값이 없다. -->
  	<select id="getBoardList" parameterType="java.util.Map" resultType="board">
 		<!-- 셋 중에 뭘해도 상관x -->
 		<!-- 
@@ -26,11 +26,18 @@
 		(select * from board order by seq desc) tt 
 		) where rn between #{startNum} and #{endNum} -->
 		
+		<!--  
 		select * from 
 		(select rownum rn, tt.* from 
 		(select * from board order by seq desc) tt 
-		) where rn >= #{startNum} and rn &lt;= #{endNum}
+		) where rn >= #{startNum} and rn &lt;= #{endNum} -->
 		<!-- &gt; (>),  &lt; (<)  -->
+		
+		<![CDATA[
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from board order by seq desc) tt 
+		) where  rn >= #{startNum} and rn <= #{endNum} ]]>
 		
 		<!-- 
 		select * from 
