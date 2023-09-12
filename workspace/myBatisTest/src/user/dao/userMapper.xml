@@ -3,34 +3,40 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="userSQL">
- 
+ 	<!-- DTO의 필드명과 테이블의 컬럼명이 틀리면 강제로 매핑해준다. -->
+ 	<resultMap type="user.bean.UserDTO" id="userResult">
+ 		<result column="NAME" property="name" />
+ 		<result column="ID" property="id" />
+ 		<result column="PWD" property="pwd" />
+ 	</resultMap>
+ 	
  	<!-- 등록 -->
- 	<insert id="write" parameterType="user.bean.UserDTO">
+ 	<insert id="write" parameterType="user">
  		insert into usertable values(#{name}, #{id}, #{pwd})
  	</insert>
  	
  	<!-- 출력 -->
- 	<select id="getUserList" resultType="user.bean.UserDTO">
+ 	<select id="getUserList" resultMap="userResult">
  		select * from usertable
  	</select>
  	
  	<!-- 수정 --> 	<!-- 넘겨받은 인자값인 id의 자료형이 String 타입이므로 java.Lang.String 즉, 자료형을 써줘야 한다.-->
- 	<select id="getUser" parameterType="java.lang.String" resultType="user.bean.UserDTO">
+ 	<select id="getUser" parameterType="java.lang.String" resultType="user">
  		select * from usertable where id=#{id}
  	</select>
- 	<update id="update" parameterType="user.bean.UserDTO">
+ 	<update id="update" parameterType="user">
  		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
- 		<!-- name=#{name} and pwd=#{pwd} (x) => 'and' 쓰면 안 됨 -->
+ 		<!-- ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ name=#{name} and pwd=#{pwd} (x) => 'and' 쓰면 안 됨 -->
  	</update>
  	
  	<!-- 삭제 (oracle은 'from' 안 써도 됨. mySQL은 필수) -->
- 	<delete id="delete" parameterType="user.bean.UserDTO">
+ 	<delete id="delete" parameterType="user">
  		delete from usertable where id=#{id}
  	</delete>
  	
  	<!-- 검색 -->
- 	<select id="search" parameterType="java.lang.String" resultType="user.bean.UserDTO">
- 			select * from usertable where name=#{name} or id like '%'||#{id}||'%'
+ 	<select id="search" parameterType="java.lang.String" resultType="user">
+ 			select * from usertable where name like '%'||#{name}||'%' or id like '%'||#{id}||'%'
 			<!-- select * from usertable where name=#{name} or id like '%${id}%' --> <!-- 이렇게 하는 것도 가능 -->
  	</select>
  </mapper>
