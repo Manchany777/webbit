@@ -118,6 +118,9 @@ function checkID(){
 	//var id = document.getElementById("id명").value; // id를 가져오는 방식
 	console.log($('#useCheckedId').val());
 	console.log($('#id').val());
+	
+	document.getElementById("idDiv").innerText = ""; // 초기화
+	
 	var id = document.getElementById("id").value;
 	
 	if(id == "")

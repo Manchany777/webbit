@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="memberSQL">
+ 	<!-- DTO의 필드명과 테이블의 컬럼명이 틀리면 강제로 매핑해준다. -->
+ 	<!-- 
+ 	<resultMap type="member.bean.MemberDTO" id="userResult">
+ 		<result column="NAME" property="name" />
+ 		<result column="ID" property="id" />
+ 		<result column="GENDER" property="gender" />
+ 		<result column="EMAIL1" property="email1" />
+ 		<result column="EMAIL2" property="email2" />
+ 		<result column="TEL1" property="tel1" />
+ 		<result column="TEL2" property="tel2" />
+ 		<result column="TEL3" property="tel3" />
+ 		<result column="ZIPCODE" property="zipcode" />
+ 		<result column="ADDR1" property="addr1" />
+ 		<result column="ADDR2" property="addr2" />
+ 		<result column="LOGTIME" property="logtime" />
+ 	</resultMap>  -->
+ 	
+ 	<!-- 아이디 중복체크 --> <!-- id값 전달하니까 String -->
+ 	<select id="isExistId" parameterType="String" resultType="member">
+ 		select * from member where id=#{id}
+ 	</select>
+ 	
+ 	<!-- 회원가입 --> <!-- DTO값 전달하니까 member(alias 적용) -->
+ 	<insert id="regist" parameterType="member">
+ 		insert into member values(#{name}, #{id}, #{pwd}, 
+ 			#{gender}, #{email1}, #{email2}, #{tel1}, #{tel2}, 
+ 			#{tel3}, #{zipcode}, #{addr1}, #{addr2}, sysdate)
+ 	</insert>
+ 	
+ 	<!-- 로그인 -->
+ 	<select id="login" parameterType="java.util.Map" resultType="member">
+		select * from member where id=#{id} and pwd=#{pwd}
+ 	</select>
+ </mapper>

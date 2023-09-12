@@ -1,5 +1,9 @@
 package member.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,13 +21,13 @@ public class LoginService implements CommandProcess {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		
+		
 		// DB
 		MemberDAO memberDAO = new MemberDAO();
-		//String name = memberDAO.login(id, pwd); // 아래도 name대신 전부 memberDTO로 수정
 		MemberDTO memberDTO = memberDAO.login(id, pwd);
 		
 		// 응답
-		if(memberDTO == null) {   // login.jsp의 <% if(memberDTO == null) { response.sendRedirect("loginFail.jsp"); ~~에 해당
+		if(memberDTO == null) { 
 			return "/member/loginFail.jsp";
 		} else {
 			// 세션(jsp와는 달리 자바니까 세션이 필요)
