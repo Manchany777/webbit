@@ -35,8 +35,28 @@
  	</delete>
  	
  	<!-- 검색 -->
- 	<select id="search" parameterType="java.lang.String" resultType="user">
- 			select * from usertable where name like '%'||#{name}||'%' or id like '%'||#{id}||'%'
-			<!-- select * from usertable where name=#{name} or id like '%${id}%' --> <!-- 이렇게 하는 것도 가능 -->
+ 	<select id="search" parameterType="java.util.Map" resultType="user">
+ 			<!--  
+ 			select * from usertable where 
+ 			<if test="columnName == 'name'">
+ 				name like '%' || #{value} || '%'
+ 			</if>
+ 			<if test="columnName == 'id'">
+ 				id like '%' || #{value} || '%'
+ 			</if> -->
+ 			
+ 			<!-- 
+ 			select * from usertable where 
+ 			<choose>
+ 				<when test="columnName == 'name'">
+ 					name like '%' || #{value} || '%'
+ 				</when>
+ 				<otherwise> 
+ 					id like '%' || #{value} || '%'
+ 				</otherwise>
+ 			</choose> -->
+ 			<!-- <otherwise> 대신에 <when test="columnName == 'id'"> 으로 해도 무방 -->
+ 			
+ 			select * from usertable where ${columnName} like '%' || #{value} || '%'
  	</select>
  </mapper>

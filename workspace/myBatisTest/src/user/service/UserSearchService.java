@@ -1,6 +1,8 @@
 package user.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import user.bean.UserDTO;
@@ -25,39 +27,36 @@ public class UserSearchService implements UserService {
 		System.out.println("==============\"");
 		System.out.print(" 번호 : ");
 		num = scan.nextInt();
-		
-		UserDAO userDAO = new UserDAO(); // 해당 유저가 진짜 있는지 확인
 
-		
+		System.out.println();
+		String columnName = null;
+		String value = null;
 		if(num == 1) {
 			// 데이터
-			System.out.println();
 			System.out.print("검색 할 이름 입력 : ");
-			String name = scan.next();
-			//String id = scan.next();
-			
-			List<UserDTO> list = userDAO.search(name, null);
-			
-			for(UserDTO userDTO : list) {
-				System.out.println(userDTO.getName() + "\t" + userDTO.getId() + "\t" + userDTO.getPwd());
-			}
-			System.out.println();
-			execute();
+			value = scan.next();
+			columnName = "name";
 		} else if(num == 2) {
 			// 데이터
-			System.out.println();
 			System.out.print("검색 할 아이디 입력 : ");
-			String id = scan.next();
-			
-			List<UserDTO> list = userDAO.search(null, id);
-			
-			for(UserDTO userDTO : list) {
-				System.out.println(userDTO.getName() + "\t" + userDTO.getId() + "\t" + userDTO.getPwd());
-			}
-			System.out.println();
-			execute();
-		} else if(num == 3) return;
+			value = scan.next();
+			columnName = "id";
 
+		} else if(num == 3) return;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("columnName", columnName);
+		map.put("value", value);
+		
+		// DB
+		UserDAO userDAO = new UserDAO(); // 해당 유저가 진짜 있는지 확인
+		List<UserDTO> list = userDAO.search(map); // 말이 좋아서 map이지 2개가 실려있는 것이다.
+		// = userDAO.search(columnName, value);
+		
+		// 응답
+		for(UserDTO userDTO : list) {
+			System.out.println(userDTO.getName() + "\t" + userDTO.getId() + "\t" + userDTO.getPwd());
+		}//for
 	}
 }
 

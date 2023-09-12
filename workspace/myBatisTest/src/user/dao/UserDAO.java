@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -78,15 +79,9 @@ public class UserDAO {
 	}
 
 
-	public List<UserDTO> search(String name, String id) {
+	public List<UserDTO> search(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); // 생성
-		List<UserDTO> list = null;
-		if (id == null ) {
-			list = sqlSession.selectList("userSQL.search", name);
-		} else if (name == null) {
-			list = sqlSession.selectList("userSQL.search", id);
-		}
-		
+		List<UserDTO> list = sqlSession.selectList("userSQL.search", map);
 		sqlSession.close();
 		
 		return list;
