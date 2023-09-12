@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="boardSQL">
+ 	<!-- DTO의 필드명과 테이블의 컬럼명이 틀리면 강제로 매핑해준다. -->
+ 	<!-- 
+ 	<resultMap type="member.bean.MemberDTO" id="userResult">
+ 		<result column="NAME" property="name" />
+ 	</resultMap>  -->
+ 	
+ 	<!-- 게시판 등록 --> <!-- DTO값 전달하니까 member(alias 적용) -->
+ 	<!-- parameterType="board" 로 해도 된다 why? -->
+ 	<insert id="boardWrite" parameterType="java.util.Map">
+ 		insert into board(seq, id, name, email, subject, content, ref) 
+ 		values(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.currval)
+ 	</insert>
+ 	
+ 	<!-- 게시판 목록 -->
+ 	<!-- 내가 DAO에서 넘긴건 list가 아니라 Map이다 why? -->
+ 	<select id="getBoardList" parameterType="java.util.Map" resultType="board">
+		<!-- 셋 중에 뭘해도 상관x -->
+		<!-- 
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from board order by seq desc) tt 
+		) where rn between #{startNum} and #{endNum} -->
+		
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from board order by seq desc) tt 
+		) where rn >= #{startNum} and rn &lt;= #{endNum}
+		<!-- &gt; (>),  &lt; (<)  -->
+		
+		<!-- 
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from board order by seq desc) tt 
+		) where <![CDATA[ rn >= #{startNum} ]]> and <![CDATA[ rn <= #{endNum} ]]> -->
+ 	</select>
+ 	
+ 	<!-- 게시글 조회 --> 
+ 	<!-- boardDTO객체를 넘기기 때문에 parameterType="Integer" 로 가져와도 된다. -->
+ 	<select id="boardDetail" parameterType="int" resultType="board">
+ 		select * from board where seq=#{seq}
+ 	</select>
+ 	
+	<!-- 총 글수 : 페이징 처리 --> 
+	<!-- parameterType로 받는 값 없음 -->
+ 	<select id="getTotalA"  resultType="int">
+ 		select count(*) from board
+ 	</select>
+ </mapper>

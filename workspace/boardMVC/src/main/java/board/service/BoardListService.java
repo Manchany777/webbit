@@ -28,6 +28,7 @@ public class BoardListService implements CommandProcess {
 		BoardDAO boardDAO = new BoardDAO();
 		List<BoardDTO> list = boardDAO.getBoardList(startNum, endNum);
 
+		
 		// 페이징 처리
 		int totalA = boardDAO.getTotalA(); // 총 글수
 
@@ -38,6 +39,7 @@ public class BoardListService implements CommandProcess {
 		boardPaging.setTotalA(totalA);
 
 		boardPaging.makePagingHTML(); // 메소드 호출
+		
 		
 		// 세션(에 담기)
 		HttpSession session = request.getSession(); // 세션생성

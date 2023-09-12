@@ -3,7 +3,6 @@ package member.dao;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -45,7 +44,8 @@ public class MemberDAO {
 		int su = 0;
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.insert("memberSQL.regist", memberDTO);
+		su = sqlSession.insert("memberSQL.regist", memberDTO);
+		// insert 메소드의 실행 결과를 su 변수에 설정하는 부분 추가
 		sqlSession.commit();
 		sqlSession.close();
 		
