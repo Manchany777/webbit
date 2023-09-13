@@ -26,7 +26,6 @@
  	</select>
  	<update id="update" parameterType="user">
  		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
- 		<!-- ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ name=#{name} and pwd=#{pwd} (x) => 'and' 쓰면 안 됨 -->
  	</update>
  	
  	<!-- 삭제 (oracle은 'from' 안 써도 됨. mySQL은 필수) -->

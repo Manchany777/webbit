@@ -55,6 +55,9 @@ td#content {
 </c:if>
 <br/>
 <input type="button" value="목록" onclick="javascript:location.href='../board/BoardList.do?pg=${ pg }'" />
+<c:if test="${ sessionScope.memName == boardDTO.name }">
+	<input type="button" value="수정" onclick="javascript:location.href='../board/BoardUpdateForm.do?seq=${seq}'" />
+</c:if>
 <%-- BoardPaging 없이 하려면 그냥 변수 pg만 쓰면 되지만 BoardPaging 클래스를 쓰려면 boardPaging.getCurrentPage()를 호출해야 한다.  --%>
 <%-- 여기서는 memberJSP와 달리 BoardViewService에서 boardPaging객체를 생성하지 않았으므로 boardPaging.currentPage는 쓰지 못한다. --%>
 </body>

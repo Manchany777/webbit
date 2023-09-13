@@ -74,4 +74,22 @@ public class BoardDAO {
 		
 		return totalA;
 	}
+	
+	// 게시글 수정
+	public BoardDTO boardModify(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.boardModify", seq); 
+		sqlSession.update("boardSQL.boardUpdate", boardDTO); 
+		sqlSession.commit();
+		sqlSession.close();
+		return boardDTO;
+	}
+	
+	// 게시글 삭제
+	public void boardDelete(String id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(); // 생성
+		sqlSession.delete("boardSQL.boardDelete", id); 
+		sqlSession.commit(); // Lock - commit 필요
+		sqlSession.close();
+	}
 }
