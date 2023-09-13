@@ -59,16 +59,18 @@
  	</select>
  	
  	<!-- 글 수정 -->
- 	<select id="boardModify" parameterType="int" resultType="board">
+ 	<!-- <select id="boardModify" parameterType="int" resultType="board">
  		select * from board where seq=#{seq}
- 	</select>
+ 	</select> -->
  	<update id="boardModify" parameterType="board">
- 		update board set name=#{name}, pwd=#{pwd} where id=#{id}
+ 		update board set id=#{id}, name=#{name}, email=#{email}, 
+ 			subject=#{subject}, content=#{content}, logtime=sysdate
+ 			where seq=#{seq}
  	</update>
  	
  	<!-- 글 삭제-->
  	<delete id="boardDelete" parameterType="board">
- 		delete from board where id=#{id}
+ 		delete from board where seq=#{seq}
  	</delete>
  	
  </mapper>

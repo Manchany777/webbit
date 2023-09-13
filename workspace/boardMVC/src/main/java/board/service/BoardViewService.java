@@ -44,7 +44,7 @@ public class BoardViewService implements CommandProcess {
 		
 		// 응답
 		request.setAttribute("boardDTO", boardDTO);  // => 이거 가져오니까 된다??
-		request.setAttribute("pg", pg); // 목록 눌렀을 때 제자리고 가게하기 위해
+		request.setAttribute("pg", pg); // 목록 눌렀을 때 제자리로 가게하기 위해
 		request.setAttribute("seq", seq);
 		//request.setAttribute("boardPaging", boardPaging);
 		

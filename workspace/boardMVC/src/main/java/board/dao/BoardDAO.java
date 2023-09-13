@@ -76,20 +76,27 @@ public class BoardDAO {
 	}
 	
 	// 게시글 수정
-	public BoardDTO boardModify(int seq) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.boardModify", seq); 
-		sqlSession.update("boardSQL.boardUpdate", boardDTO); 
-		sqlSession.commit();
-		sqlSession.close();
-		return boardDTO;
-	}
+	/*
+	 * public BoardDTO boardModify(int seq) { SqlSession sqlSession =
+	 * sqlSessionFactory.openSession(); BoardDTO boardDTO =
+	 * sqlSession.selectOne("boardSQL.getBoard", seq);
+	 * sqlSession.update("boardSQL.boardUpdate", boardDTO); sqlSession.commit();
+	 * sqlSession.close(); return boardDTO; }
+	 */
 	
-	// 게시글 삭제
-	public void boardDelete(String id) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(); // 생성
-		sqlSession.delete("boardSQL.boardDelete", id); 
+	public void boardModify(Map<String, Object> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert("boardSQL.boardModify", map);
 		sqlSession.commit(); // Lock - commit 필요
 		sqlSession.close();
 	}
+	
+	// 게시글 삭제
+	public void boardDelete(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(); // 생성
+		sqlSession.delete("boardSQL.boardDelete", seq); 
+		sqlSession.commit(); // Lock - commit 필요
+		sqlSession.close();
+	}
+	
 }
